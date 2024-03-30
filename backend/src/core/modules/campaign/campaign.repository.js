@@ -331,15 +331,15 @@ class Repository extends DataRepository {
         return super.removeNameConstraint();
     }
 
-    findByQuery(specification, isSortedByStatus = false) {
-        var sql = specification.toSql();
-        var query = sql[0];
-        var params = sql[1];
+    findByQuery(specification, order) {
+        var whereSql = specification.toSql();
+        var whereQuery = whereSql[0];
+        var whereParams = whereSql[1];
 
         var query = this.query()
             .join('organizations', 'campaigns.organization_id', '=', 'organizations.id')
             .whereNull('campaigns.deleted_at')
-            .whereRaw(query, params)
+            .whereRaw(whereQuery, whereParams)
             .select([
                 'campaigns.id',
                 'campaigns.name',
@@ -360,14 +360,8 @@ class Repository extends DataRepository {
                 )`)}
             ]);
 
-        if (isSortedByStatus === 'true') {
-            query = query.orderByRaw(`
-                CASE
-                    WHEN campaigns.start_date > NOW() AND campaigns.end_date > NOW() THEN 1  -- UPCOMING
-                    WHEN campaigns.start_date < NOW() AND campaigns.end_date < NOW() THEN 2  -- PASSED
-                    ELSE 2  -- IN PROGRESS
-                END
-            `);
+        if (order) {
+            query = query.orderByRaw(order.toSql());
         }
         
         return query;

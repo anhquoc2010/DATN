@@ -8,8 +8,9 @@ import { UserCampaignRepository } from '../../user_campaign/user_campaign.reposi
 import { Status } from '../../../common/enum';
 import { UserRepository } from '../../../modules/user/user.repository';
 import { FileSystemService, MediaService } from 'core/modules/document';
-import { CampaignNamePartialMatchSpecification, CampaignWardSpecification, CampaignDistrictSpecification, CampaignCitySpecification, CampaignCoordinateSpecification } from '../specifications';
+import { CampaignNamePartialMatchSpecification, CampaignWardSpecification, CampaignDistrictSpecification, CampaignCitySpecification, CampaignCoordinateSpecification, CampaignLocationProximitySpecification } from '../specifications';
 import { TrueSpecification } from 'core/common/specifications';
+import { OrderFactory } from '../orders';
 
 class Service {
     constructor() {
@@ -425,13 +426,40 @@ class Service {
             specification = specification.and(campaignCoordinateSpecification);
         }
 
+        var order = this.buildCampaignOrder(query.currentLat, query.currentLng, query.orderBy);
+
         try {
-            return this.repository.findByQuery(specification, query.isSortedByStatus);
+            return this.repository.findByQuery(specification, order);
         } catch (error) {
             logger.error(error.message);
             throw new InternalServerException();
         }
     }
+
+    buildCampaignOrder(lat, lng, orderBy) {
+        if (!orderBy) {
+            return null;
+        }
+
+        var orderStrategy = null;
+
+        orderBy.split(', ').forEach(value => {
+            console.log(value)
+            var array = value.split(' ');
+            var param = array[0];
+            var direction = array[1];
+
+            var order = OrderFactory.getOrder(param, lat, lng, direction);
+
+            if (orderStrategy) {
+                orderStrategy = orderStrategy.thenBy(order);
+            } else {
+                orderStrategy = order;
+            }
+        });
+        return orderStrategy;
+    }
+
 };
 
 export const CampaignService = new Service();

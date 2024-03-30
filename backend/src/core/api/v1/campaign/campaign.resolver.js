@@ -1,7 +1,7 @@
 import { Module } from 'packages/handler/Module';
 import { SearchCampaignInterceptor, CreateCampaignInterceptor } from 'core/modules/campaign/interceptor';
 import { CampaignController } from './campaign.controller';
-import { orgCampaignId, campaignId, RecordId, NameQuery, LongitudeQuery, LatitudeQuery, userId, WardQuery, DistrictQuery, CityQuery, CampaignSortQuery } from '../../../common/swagger';
+import { orgCampaignId, campaignId, RecordId, NameQuery, LongitudeQuery, LatitudeQuery, userId, WardQuery, DistrictQuery, CityQuery, CampaignOrderQuery, CurrentLatitudeQuery, CurrentLongitudeQuery } from '../../../common/swagger';
 import { RecordIdInterceptor } from '../../../modules/interceptor/recordId/record-id.interceptor';
 import { FeedbackInterceptor } from '../../../modules/feedback';
 import { MediaInterceptor } from 'core/modules/document';
@@ -62,7 +62,7 @@ export const CampaignResolver = Module.builder()
         {
             route: '/campaigns',
             method: 'get',
-            params: [NameQuery, LongitudeQuery, LatitudeQuery, WardQuery, DistrictQuery, CityQuery, CampaignSortQuery],
+            params: [NameQuery, LatitudeQuery, LongitudeQuery, WardQuery, DistrictQuery, CityQuery, CampaignOrderQuery, CurrentLatitudeQuery, CurrentLongitudeQuery],
             interceptors: [SearchCampaignInterceptor],
             controller: CampaignController.searchByQuery,
         },

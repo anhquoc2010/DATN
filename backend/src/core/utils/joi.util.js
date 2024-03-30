@@ -9,6 +9,9 @@ const PWD_FORMAT = /^[a-zA-Z0-9\d@$!%*?&]{8,30}$/;
 
 // Vietnam phone number validation
 const PHONE_NUMBER_FORMAT = /(((\+|)84)|0)(3|5|7|8|9)+([0-9]{8})\b/;
+
+const ORDER_FORMAT = /^(\w+\s(ASC|DESC|asc|desc))(,\s\w+\s(ASC|DESC|asc|desc))*$/;
+
 export class JoiUtils {
     static objectId() {
         return Joi.string().regex(MONGOOSE_ID_OBJECT_FORMAT);
@@ -69,5 +72,9 @@ export class JoiUtils {
 
     static phoneNumber() {
         return Joi.string().regex(PHONE_NUMBER_FORMAT);
+    }
+
+    static order() {
+        return Joi.string().regex(ORDER_FORMAT);
     }
 }

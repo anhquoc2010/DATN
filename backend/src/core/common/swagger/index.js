@@ -15,3 +15,5 @@ export * from './ward-query';
 export * from './district-query';
 export * from './city-query';
 export * from './campaign-sort-query';
+export * from './current-latitude-query';
+export * from './current-longitude-query';

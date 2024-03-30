@@ -1,9 +1,10 @@
+import { OrderFactory } from 'core/modules/campaign/orders';
 import { SwaggerDocument } from '../../../packages/swagger';
 
-export const CampaignSortQuery = SwaggerDocument.ApiParams({
-    name: 'isSortedByStatus',
+export const CampaignOrderQuery = SwaggerDocument.ApiParams({
+    name: 'orderBy',
     paramsIn: 'query',
-    type: 'bool',
+    type: 'string',
     required: false,
-    description: 'Sort campaigns by status as follows: UPCOMING, ENDED, IN PROGRESS',
+    description: `Syntax follows the pattern 'value + 'asc' or 'desc' (+ ', ') (e.g., 'value1 asc, value2 desc'). Allowed values include: ${OrderFactory.getAllOrderQueryValues()}.`,
 });

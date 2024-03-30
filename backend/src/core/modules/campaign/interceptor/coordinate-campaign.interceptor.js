@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import { DefaultValidatorInterceptor } from 'core/infrastructure/interceptor';
+import { JoiUtils } from '../../../utils';
 
 export const SearchCampaignInterceptor = new DefaultValidatorInterceptor(
     Joi.object({
@@ -9,6 +10,8 @@ export const SearchCampaignInterceptor = new DefaultValidatorInterceptor(
         ward: Joi.string().optional(),
         district: Joi.string().optional(),
         city: Joi.string().optional(),
-        isSortedByStatus: Joi.boolean().optional(),
+        orderBy: JoiUtils.order().optional(),
+        currentLat: Joi.number().optional(),
+        currentLng: Joi.number().optional(),
     }),
 );

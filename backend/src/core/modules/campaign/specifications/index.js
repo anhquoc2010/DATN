@@ -3,3 +3,4 @@ export * from './campaign-ward-specification';
 export * from './campaign-district-specification';
 export * from './campaign-city-specification';
 export * from './campaign-coordinate-specification';
+export * from './campaign-location-proximity-specification'
