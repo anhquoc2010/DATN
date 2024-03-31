@@ -138,7 +138,6 @@ class Repository extends DataRepository {
     }
 
     findAllDonationsByUserId(userId) {
-        console.log(userId)
         return this.query()
             .where('donation_records.donor_id', '=', userId)
             .join('campaigns', 'donation_records.campaign_id', 'campaigns.id')

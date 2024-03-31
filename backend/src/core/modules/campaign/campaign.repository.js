@@ -20,9 +20,13 @@ class Repository extends DataRepository {
                 { registerLink: 'campaigns.register_link' },
                 { donationRequirement: 'campaigns.donation_requirement' },
                 'campaigns.coordinate',
-                { organizationName: 'organizations.name' },
                 { organizationId: 'campaigns.organization_id' },
-                { organizationAvatar: 'organizations.avatar' } 
+                { organization: connection.raw(`json_build_object(
+                    'name', organizations.name, 
+                    'avatar', organizations.avatar,
+                    'id', campaigns.organization_id,
+                    'rating', 4.9
+                )`)}
             ]);
     }
 
