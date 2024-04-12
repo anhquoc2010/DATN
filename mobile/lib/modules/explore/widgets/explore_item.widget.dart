@@ -35,7 +35,6 @@ class ExploreItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(8)),
                 child: item.image == null
                     ? Assets.images.imgDefaultCampaign.image(
                         height: 220,

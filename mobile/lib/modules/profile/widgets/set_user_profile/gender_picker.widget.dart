@@ -27,7 +27,7 @@ class _GenderPickerState extends State<GenderPicker> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: Colors.grey[400]!,
+          color: Colors.grey[400] ?? Colors.grey,
         ),
       ),
       child: Padding(

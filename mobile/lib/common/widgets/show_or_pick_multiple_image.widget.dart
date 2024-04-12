@@ -97,9 +97,7 @@ class _ShowOrPickMultipleImageState extends State<ShowOrPickMultipleImage> {
       showModalBottomSheet(
         context: context,
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(20),
-          ),
+          
         ),
         isScrollControlled: true,
         builder: (context) {
@@ -122,7 +120,7 @@ class _ShowOrPickMultipleImageState extends State<ShowOrPickMultipleImage> {
               ),
               SizedBox(
                 height: context.paddingBottom,
-              )
+              ),
             ],
           );
         },

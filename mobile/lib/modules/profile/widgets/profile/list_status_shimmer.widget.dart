@@ -20,8 +20,8 @@ class ListStatus extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: List.generate(3, (index) {
           return Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.grey[100]!,
+            baseColor: Colors.grey[300] ?? Colors.grey,
+            highlightColor: Colors.grey[100] ?? Colors.grey,
             child: Column(
               children: [
                 Container(
@@ -43,7 +43,7 @@ class ListStatus extends StatelessWidget {
                   width: 40,
                   height: 10,
                   color: Colors.white,
-                )
+                ),
               ],
             ),
           );

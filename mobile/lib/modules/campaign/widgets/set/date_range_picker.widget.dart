@@ -30,8 +30,8 @@ class _DateRangePickerState extends State<DateRangePicker> {
 
   @override
   void initState() {
-    startDate = widget.startDate == null ? null : widget.startDate!.toDisplay;
-    endDate = widget.endDate == null ? null : widget.endDate!.toDisplay;
+    startDate = widget.startDate?.toDisplay;
+    endDate = widget.endDate?.toDisplay;
     super.initState();
   }
 
@@ -39,9 +39,7 @@ class _DateRangePickerState extends State<DateRangePicker> {
     final List<DateTime>? dateRange = await showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20),
-        ),
+        
       ),
       backgroundColor: Colors.white,
       enableDrag: false,
@@ -109,7 +107,7 @@ class _DateRangePickerState extends State<DateRangePicker> {
                             ? ColorStyles.gray200
                             : ColorStyles.zodiacBlue,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/common/extensions/context.extension.dart';
@@ -43,11 +42,11 @@ class CommonError extends StatelessWidget {
                 height: 15,
               ),
               AppRoundedButton(
-                onPressed: action!,
+                onPressed: action ?? () {},
                 content: labelAction ?? LocaleKeys.button_confirm.tr(),
-              )
+              ),
             ],
-          )
+          ),
       ],
     );
   }

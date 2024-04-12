@@ -8,8 +8,8 @@ class SummaryInfoShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
-      highlightColor: Colors.grey[100]!,
+      baseColor: Colors.grey[300] ?? Colors.grey,
+      highlightColor: Colors.grey[100] ?? Colors.grey,
       child: Row(
         children: [
           Container(
@@ -44,9 +44,9 @@ class SummaryInfoShimmer extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(60),
                 ),
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );
