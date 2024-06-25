@@ -1,66 +1,92 @@
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mobile/common/constants/constants.dart';
 import 'package:mobile/data/repositories/place.repository.dart';
 import 'package:mobile/generated/locale_keys.g.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart';
 
 part 'map.state.dart';
 part 'map.event.dart';
 
 class MapBloc extends Bloc<MapEvent, MapState> {
   final PlaceRepository _placeRepository;
+  final Location _location;
 
   MapBloc({
     required PlaceRepository placeRepository,
+    required Location location,
   })  : _placeRepository = placeRepository,
+        _location = location,
         super(
           const MapState.initial(),
         ) {
-    on<MapPermissionRequest>(_onRequestPermission);
+    on<_MapsLocationPermissionGrand>(_onGrandLocationPermission);
+    on<MapsLocationGet>(_onGetLocation);
     on<MapMarkersGet>(_onGetMarkers);
-    add(MapPermissionRequest());
+    add(_MapsLocationPermissionGrand());
     add(const MapMarkersGet());
   }
 
-  Future<LatLng> _getMyLocation(Emitter<MapState> emiiter) async {
-    try {
-      final Position userPosition = await Geolocator.getCurrentPosition();
+  Future<void> _onGrandLocationPermission(
+    _MapsLocationPermissionGrand event,
+    Emitter<MapState> emit,
+  ) async {
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
 
-      return LatLng(userPosition.latitude, userPosition.longitude);
-    } catch (err) {
-      log('Error in get user location');
-      emiiter(
-        state.copyWith(
-          error: LocaleKeys.map_location_error.tr(),
-        ),
-      );
-
-      return defaultLocation;
+    serviceEnabled = await _location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await _location.requestService();
+      if (!serviceEnabled) {
+        emit(
+          state.copyWith(
+            error: LocaleKeys.map_location_error.tr(),
+          ),
+        );
+        return;
+      }
     }
+
+    permissionGranted = await _location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await _location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        emit(
+          state.copyWith(
+            error: LocaleKeys.map_location_error.tr(),
+          ),
+        );
+        return;
+      }
+    }
+
+    add(MapsLocationGet());
   }
 
-  Future<void> _onRequestPermission(
-    MapPermissionRequest event,
-    Emitter<MapState> emiiter,
+  Future<void> _onGetLocation(
+    MapsLocationGet event,
+    Emitter<MapState> emit,
   ) async {
-    final bool isGranted = await Permission.location.isGranted;
-
-    if (!isGranted) {
-      await Permission.location.request();
+    try {
+      final locationData = await _location.getLocation();
+      emit(
+        state.copyWith(
+          myLocation: LatLng(
+            locationData.latitude!,
+            locationData.longitude!,
+          ),
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          error: e.toString(),
+        ),
+      );
     }
-
-    emiiter(
-      MapGetLocationSuccess(
-        myLocation: await _getMyLocation(emiiter),
-        markers: state.markers ?? const {},
-      ),
-    );
   }
 
   Future<void> _onGetMarkers(

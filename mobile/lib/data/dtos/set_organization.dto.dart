@@ -13,6 +13,7 @@ class SetOrganizationDTO {
   final String? phoneNumber;
   final String? address;
   final String? description;
+  final double? rating;
 
   SetOrganizationDTO({
     this.id,
@@ -21,6 +22,7 @@ class SetOrganizationDTO {
     this.phoneNumber,
     this.address,
     this.description,
+    this.rating,
   });
 
   Map<String, dynamic> toJson() => _$SetOrganizationDTOToJson(this);
@@ -32,6 +34,7 @@ class SetOrganizationDTO {
     String? phoneNumber,
     String? address,
     String? description,
+    double? rating,
   }) {
     return SetOrganizationDTO(
       id: id ?? this.id,
@@ -40,6 +43,7 @@ class SetOrganizationDTO {
       phoneNumber: phoneNumber ?? this.phoneNumber,
       address: address ?? this.address,
       description: description ?? this.description,
+      rating: rating ?? this.rating,
     );
   }
 }

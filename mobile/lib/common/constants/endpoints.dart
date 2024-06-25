@@ -25,7 +25,7 @@ abstract class Endpoints {
   static String coordinators = '$apiUrl/campaigns/coordinates';
 
   static String autocompletePlace =
-      'https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${AppFlavor.googleMapApiKey}&components=country:vn&region=vn&types=administrative_area_level_3|administrative_area_level_2';
+      'https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${AppFlavor.googleMapApiKey}&components=country:vn&region=vn&types=administrative_area_level_3';
 
   static String geoCode =
       'https://maps.googleapis.com/maps/api/geocode/json?key=${AppFlavor.googleMapApiKey}';

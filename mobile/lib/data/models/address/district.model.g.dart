@@ -9,7 +9,7 @@ part of 'district.model.dart';
 DistrictModel _$DistrictModelFromJson(Map<String, dynamic> json) =>
     DistrictModel(
       districtName: json['name'] as String,
-      districtCode: json['code'] as int,
+      districtCode: (json['code'] as num).toInt(),
     );
 
 Map<String, dynamic> _$DistrictModelToJson(DistrictModel instance) =>

@@ -7,7 +7,9 @@ abstract class MapEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class MapPermissionRequest extends MapEvent {}
+final class _MapsLocationPermissionGrand extends MapEvent {}
+
+final class MapsLocationGet extends MapEvent {}
 
 class MapMarkersGet extends MapEvent {
   const MapMarkersGet();

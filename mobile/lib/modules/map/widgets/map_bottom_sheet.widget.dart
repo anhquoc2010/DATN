@@ -52,7 +52,7 @@ class CampaignBottomSheet extends StatelessWidget {
                               );
                             },
                           },
-                          fallbackBuilder: (_) => const SizedBox(),
+                          fallbackBuilder: (_) => const SizedBox.shrink(),
                         );
                       },
                     ),

@@ -7,7 +7,7 @@ part of 'user.model.dart';
 // **************************************************************************
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       avatar: json['avatar'] as String?,
       fullName: json['fullName'] as String,
       phoneNumber: json['phoneNumber'] as String?,
@@ -18,16 +18,16 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
           : DateTime.parse(json['birthDay'] as String),
       address: json['address'] as String?,
       workSpace: json['workSpace'] as String?,
-      projectPending: json['projectPending'] as int?,
-      projectCompleted: json['projectCompleted'] as int?,
-      projectOnGoing: json['projectOnGoing'] as int?,
+      projectPending: (json['projectPending'] as num?)?.toInt(),
+      projectCompleted: (json['projectCompleted'] as num?)?.toInt(),
+      projectOnGoing: (json['projectOnGoing'] as num?)?.toInt(),
       currentOrganization: json['currentOrganization'] == null
           ? null
           : OrganizationModel.fromJson(
               json['currentOrganization'] as Map<String, dynamic>),
-      pendingCampaigns: json['totalPendingCampaigns'] as int? ?? 0,
-      ongoingCampaigns: json['totalOngoingCampaigns'] as int? ?? 0,
-      totalFeedbacks: json['totalFeedbacks'] as int? ?? 0,
+      pendingCampaigns: (json['totalPendingCampaigns'] as num?)?.toInt() ?? 0,
+      ongoingCampaigns: (json['totalOngoingCampaigns'] as num?)?.toInt() ?? 0,
+      totalFeedbacks: (json['totalFeedbacks'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{

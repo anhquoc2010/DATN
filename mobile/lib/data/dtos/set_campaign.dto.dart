@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mobile/data/models/address.model.dart';
 
 part 'set_campaign.dto.g.dart';
 
@@ -10,6 +11,7 @@ part 'set_campaign.dto.g.dart';
 class SetCampaignDTO {
   String? name;
   dynamic image;
+  AddressModel? location;
   String? address;
   String? specificAddress;
   Map<String, double>? coordinate;
@@ -31,6 +33,7 @@ class SetCampaignDTO {
     this.image,
     this.name,
     this.description,
+    this.location,
     this.address,
     this.specificAddress,
     this.startDate,
@@ -43,11 +46,14 @@ class SetCampaignDTO {
     this.organizationId,
   });
 
+  String get fullAddress => '$specificAddress, $address';
+
   Map<String, dynamic> toJson() => _$SetCampaignDTOToJson(this);
 
   SetCampaignDTO copyWith({
     String? name,
     dynamic image,
+    AddressModel? location,
     String? address,
     String? specificAddress,
     Map<String, double>? coordinate,
@@ -63,6 +69,7 @@ class SetCampaignDTO {
     return SetCampaignDTO(
       name: name ?? this.name,
       image: image ?? this.image,
+      location: location ?? this.location,
       address: address ?? this.address,
       specificAddress: specificAddress ?? this.specificAddress,
       coordinate: coordinate ?? this.coordinate,

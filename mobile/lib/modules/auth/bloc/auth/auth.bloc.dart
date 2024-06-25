@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/common/utils/wrapped_value.dart';
 import 'package:mobile/data/dtos/auth.dto.dart';
 import 'package:mobile/data/models/organization.model.dart';

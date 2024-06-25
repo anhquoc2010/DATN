@@ -36,7 +36,7 @@ class CampaignInfo extends StatelessWidget {
     } else if (campaign.isEnded) {
       return CampaignFeedbackButton(campaign: campaign);
     } else {
-      return const SizedBox();
+      return const SizedBox.shrink();
     }
   }
 
@@ -61,9 +61,10 @@ class CampaignInfo extends StatelessWidget {
             _verticalSpacing,
             OrganizationInfo(
               organization: OrganizationModel(
-                id: campaign.organizationId!,
-                name: campaign.organizationName ?? '',
-                avatar: campaign.organizationAvatar,
+                id: campaign.organization!.id,
+                name: campaign.organization?.name,
+                avatar: campaign.organization?.avatar,
+                rating: campaign.organization?.rating,
                 address: '',
                 description: '',
                 phoneNumber: '',

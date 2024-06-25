@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/common/extensions/context.extension.dart';
 import 'package:mobile/common/theme/text_styles.dart';
 import 'package:mobile/common/utils/toast.util.dart';
 import 'package:mobile/data/repositories/user.repository.dart';
@@ -69,14 +68,8 @@ class _LoginView extends StatelessWidget {
       body: Center(
         child: SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
-          child: Container(
-            height: context.height,
-            padding: EdgeInsets.fromLTRB(
-              40,
-              0,
-              40,
-              context.paddingBottom + 20,
-            ),
+          child: Padding(
+            padding: const EdgeInsets.all(40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -114,7 +107,7 @@ class _LoginView extends StatelessWidget {
                     );
                   },
                 ),
-                const Spacer(),
+                // const Spacer(),
                 const AuthNavigateOption(
                   haveAccount: false,
                 ),

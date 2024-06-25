@@ -22,8 +22,7 @@ abstract class DialogUtil {
 
     Navigator.of(context).push(
       CustomPopupRoute(
-        child: WillPopScope(
-          onWillPop: () async => false,
+        child: PopScope(
           child: Center(
             child: Container(
               height: 60,

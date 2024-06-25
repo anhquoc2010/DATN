@@ -8,7 +8,7 @@ part of 'ward.model.dart';
 
 WardModel _$WardModelFromJson(Map<String, dynamic> json) => WardModel(
       wardName: json['name'] as String,
-      wardCode: json['code'] as int,
+      wardCode: (json['code'] as num).toInt(),
     );
 
 Map<String, dynamic> _$WardModelToJson(WardModel instance) => <String, dynamic>{

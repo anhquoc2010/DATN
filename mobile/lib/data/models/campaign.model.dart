@@ -5,6 +5,8 @@ import 'package:mobile/common/utils/json.util.dart';
 import 'package:mobile/data/dtos/feedback_campaign.dto.dart';
 import 'package:mobile/data/dtos/paticipant_feedback.dto.dart';
 import 'package:mobile/data/dtos/set_campaign.dto.dart';
+import 'package:mobile/data/models/address.model.dart';
+import 'package:mobile/data/models/organization.model.dart';
 import 'package:mobile/generated/locale_keys.g.dart';
 
 part 'campaign.model.g.dart';
@@ -16,7 +18,10 @@ class CampaignModel {
   final int? id;
   final String name;
   final String? image;
-  final String address;
+  @JsonKey(includeIfNull: false)
+  final AddressModel? location;
+  @JsonKey(includeIfNull: false)
+  final String? address;
   final String? specificAddress;
   final Map<String, double>? coordinate;
   final String? description;
@@ -33,9 +38,7 @@ class CampaignModel {
   final bool isUserGaveFeedback;
   @JsonKey(includeToJson: false)
   final List<ParticipantFeedbackDTO> userFeedbacks;
-  final String? organizationName;
-  final String? organizationAvatar;
-  final int? organizationId;
+  final OrganizationModel? organization;
 
   bool get isUpcoming => startDate.isAfter(DateTime.now());
   bool get isOngoing =>
@@ -55,7 +58,8 @@ class CampaignModel {
   CampaignModel({
     this.id,
     required this.name,
-    required this.address,
+    required this.location,
+    this.address,
     this.specificAddress,
     this.isUserJoined = false,
     this.isUserGaveFeedback = false,
@@ -69,10 +73,10 @@ class CampaignModel {
     this.userFeedbacks = const [],
     this.feedback,
     this.coordinate,
-    this.organizationName,
-    this.organizationAvatar,
-    this.organizationId,
+    this.organization,
   });
+
+  String get fullAddress => '$specificAddress, $address';
 
   factory CampaignModel.fromJson(Map<String, dynamic> json) =>
       _$CampaignModelFromJson(json);
@@ -83,6 +87,7 @@ class CampaignModel {
     return SetCampaignDTO(
       name: name,
       description: description,
+      location: location,
       address: address,
       specificAddress: specificAddress,
       startDate: startDate,

@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:mobile/common/constants/handle_status.enum.dart';
 import 'package:mobile/data/models/user.model.dart';
@@ -8,10 +8,9 @@ part 'user_profile.state.dart';
 part 'user_profile.event.dart';
 
 class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
-
   UserProfileBloc({
     required UserRepository userRepository,
-  })  : super(
+  }) : super(
           const UserProfileState.initial(),
         );
 }

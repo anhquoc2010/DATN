@@ -5,8 +5,6 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
-import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 import 'package:mobile/app.dart';
 import 'package:mobile/common/helpers/firebase_service.dart';
 import 'package:mobile/configs/app_bloc_observer.dart';
@@ -52,12 +50,6 @@ Future<void> initializeApp() async {
   await configureDependencies();
 
   await FirebaseService.init();
-
-  final GoogleMapsFlutterPlatform mapsImplementation =
-      GoogleMapsFlutterPlatform.instance;
-  if (mapsImplementation is GoogleMapsFlutterAndroid) {
-    mapsImplementation.useAndroidViewSurface = false;
-  }
 
   handleError();
 

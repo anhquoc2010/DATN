@@ -5,7 +5,9 @@ import 'package:mobile/common/theme/color_styles.dart';
 import 'package:mobile/generated/assets.gen.dart';
 import 'package:mobile/generated/locale_keys.g.dart';
 import 'package:mobile/modules/auth/auth.dart';
+import 'package:mobile/modules/campaign/campaign.dart';
 import 'package:mobile/modules/core/bloc/root.bloc.dart';
+import 'package:mobile/modules/map/map.dart';
 
 class AppBottomNavigationBar extends StatelessWidget {
   const AppBottomNavigationBar({super.key});
@@ -60,6 +62,16 @@ class AppBottomNavigationBar extends StatelessWidget {
                   context
                       .read<RootBloc>()
                       .add(RootBottomTabChange(newIndex: newIndex));
+
+                  if (newIndex == 0) {
+                    context.read<MapBloc>().add(const MapMarkersGet());
+                  }
+
+                  if (_isAuthenticatedOrganization(context) && newIndex == 2) {
+                    context.read<CampaignManagementBloc>().add(
+                          const CampaignManagementGet(),
+                        );
+                  }
                 },
                 selectedFontSize: 11,
                 unselectedFontSize: 11,

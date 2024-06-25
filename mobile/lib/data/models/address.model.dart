@@ -4,19 +4,19 @@ part 'address.model.g.dart';
 
 @JsonSerializable()
 class AddressModel {
+  @JsonKey(name: 'city')
   final String province;
   final String district;
   final String ward;
-  final String specificAddress;
+  @JsonKey(includeIfNull: false)
+  final String? specificAddress;
 
   AddressModel({
     required this.province,
     required this.district,
     required this.ward,
-    required this.specificAddress,
+    this.specificAddress,
   });
-
-  String get fullAddress => '$specificAddress, $ward, $district, $province';
 
   factory AddressModel.fromJson(Map<String, dynamic> json) =>
       _$AddressModelFromJson(json);

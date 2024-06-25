@@ -74,7 +74,7 @@ class ItemSearchWidget extends StatelessWidget {
                           color: Colors.transparent,
                         ),
                         Text(
-                          '${item.specificAddress}, ${item.address}',
+                          '${item.specificAddress}, ${item.location}',
                           style: TextStyles.regularCaption12,
                         ),
                         const Divider(

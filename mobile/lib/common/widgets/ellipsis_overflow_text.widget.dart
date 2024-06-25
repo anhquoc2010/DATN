@@ -40,7 +40,7 @@ class EllipsisOverflowText extends StatelessWidget {
   final TextDirection? textDirection;
   final Locale? locale;
   final bool? softWrap;
-  final double? textScaleFactor;
+  final TextScaler? textScaleFactor;
   final String? semanticsLabel;
   final TextWidthBasis? textWidthBasis;
   final TextHeightBehavior? textHeightBehavior;
@@ -71,14 +71,14 @@ class EllipsisOverflowText extends StatelessWidget {
   List _loadData(
     constraints,
     TextStyle style,
-    double? textScale,
+    TextScaler? textScale,
     int? initMaxLines,
   ) {
     final textPainter = TextPainter(
       text: TextSpan(text: data, style: style),
       textDirection: TextDirection.ltr,
       locale: locale ?? style.locale,
-      textScaleFactor: textScale ?? 1,
+      textScaler: textScale ?? TextScaler.noScaling,
       textHeightBehavior: textHeightBehavior,
       strutStyle: strutStyle,
     );
@@ -113,7 +113,7 @@ class EllipsisOverflowText extends StatelessWidget {
         }
 
         final textScale =
-            textScaleFactor ?? MediaQuery.textScaleFactorOf(context);
+            textScaleFactor ?? MediaQuery.textScalerOf(context);
 
         int? maxLinesFinal = maxLines ?? defaultTextStyle.maxLines;
 
@@ -132,7 +132,7 @@ class EllipsisOverflowText extends StatelessWidget {
           softWrap: softWrap,
           textDirection: textDirection,
           textWidthBasis: textWidthBasis,
-          textScaleFactor: textScale,
+          textScaler: textScale,
           locale: locale,
           selectionColor: selectionColor,
           semanticsLabel: semanticsLabel,

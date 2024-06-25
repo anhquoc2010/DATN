@@ -6,11 +6,13 @@ part 'organization.model.g.dart';
 @JsonSerializable()
 class OrganizationModel {
   final int id;
-  final String name;
-  final String phoneNumber;
-  final String address;
-  final String description;
+  final String? name;
+  final String? phoneNumber;
+  final String? address;
+  final String? description;
   final String? avatar;
+  @JsonKey(includeIfNull: false)
+  final double? rating;
 
   OrganizationModel({
     required this.id,
@@ -19,6 +21,7 @@ class OrganizationModel {
     required this.address,
     required this.description,
     this.avatar,
+    this.rating,
   });
 
   factory OrganizationModel.fromJson(Map<String, dynamic> json) =>
@@ -34,6 +37,7 @@ class OrganizationModel {
       phoneNumber: phoneNumber,
       address: address,
       description: description,
+      rating: rating,
     );
   }
 }

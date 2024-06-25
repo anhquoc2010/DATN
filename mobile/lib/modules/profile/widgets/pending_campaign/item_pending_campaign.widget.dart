@@ -71,7 +71,7 @@ class ItemPendingCampaignWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  campaign.organizationName ?? '',
+                  campaign.organization?.name ?? '',
                   style: TextStyles.regularBody14.copyWith(
                     color: Colors.grey,
                   ),
@@ -82,7 +82,7 @@ class ItemPendingCampaignWidget extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width - 176,
                   child: Text(
-                    campaign.address,
+                    campaign.fullAddress,
                     style: TextStyles.regularBody14.copyWith(
                       color: ColorStyles.disableColor,
                     ),

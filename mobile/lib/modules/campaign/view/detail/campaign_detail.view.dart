@@ -67,7 +67,7 @@ class _CampaignDetailView extends StatelessWidget {
               CampaignDetailStatus.getLoading: (_) => const Center(
                     child: CupertinoActivityIndicator(),
                   ),
-              CampaignDetailStatus.initial: (_) => const SizedBox(),
+              CampaignDetailStatus.initial: (_) => const SizedBox.shrink(),
             },
             fallbackBuilder: (_) {
               return CampaignInfo(

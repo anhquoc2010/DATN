@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:mobile/common/constants/handle_status.enum.dart';
@@ -46,9 +46,10 @@ class ParticipantFeedbackBloc
         campaignRateError: event.participantFeedbackDTO.campaignRate == 0.0
             ? Wrapped.value(LocaleKeys.validator_campaign_rate.tr())
             : const Wrapped.value(null),
-        organizationRateError: event.participantFeedbackDTO.organizationRate == 0.0
-            ? Wrapped.value(LocaleKeys.validator_organization_rate.tr())
-            : const Wrapped.value(null),
+        organizationRateError:
+            event.participantFeedbackDTO.organizationRate == 0.0
+                ? Wrapped.value(LocaleKeys.validator_organization_rate.tr())
+                : const Wrapped.value(null),
       ),
     );
   }
@@ -73,7 +74,8 @@ class ParticipantFeedbackBloc
           await _campaignRepository
               .updateParticipantFeedback(event.participantFeedback);
         }
-        await _campaignRepository.participantFeedback(event.participantFeedback);
+        await _campaignRepository
+            .participantFeedback(event.participantFeedback);
 
         emitter(
           state.copyWith(

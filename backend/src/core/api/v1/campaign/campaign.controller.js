@@ -132,19 +132,17 @@ class Controller {
     createOne = async req => {
         const { organization_ids } = req.user.payload;
 
-        const { file } = req;
-
         try {
             // check if organizationId in params is in the organization_ids array of the user
             if (!organization_ids.includes(parseInt(req.params.organizationId))) {
                 throw new ForbiddenException(MESSAGE.NOT_BELONG_TO_ORGANIZATION);
             }
 
-            const data = await this.service.createOne(CreateCampaignDto(req.body), req.params.organizationId, file);
+            const data = await this.service.createOne(CreateCampaignDto(req.body), req.params.organizationId, req.file);
 
             return ValidHttpResponse.toCreatedResponse(data);
         } catch(error) {
-            this.service.deleteFile(file);
+            this.service.deleteFile(req.file);
             logger.error(error.message);
             throw error;
         }
@@ -153,7 +151,7 @@ class Controller {
     updateOne = async req => {
         const { organization_ids } = req.user.payload;
 
-        const { file } = req;
+        const { file } = req.file;
 
         try {
             // check if organizationId in params is in the organization_ids array of the user

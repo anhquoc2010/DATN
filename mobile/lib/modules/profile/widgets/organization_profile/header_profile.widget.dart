@@ -43,7 +43,7 @@ class HeaderProfile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  organization.name,
+                  organization.name ?? '',
                   style: TextStyles.s17MediumText,
                 ),
                 Row(

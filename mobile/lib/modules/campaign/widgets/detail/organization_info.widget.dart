@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/common/theme/color_styles.dart';
 import 'package:mobile/common/theme/text_styles.dart';
 import 'package:mobile/common/widgets/star_rating.widget.dart';
+import 'package:mobile/configs/router/app_routes.dart';
 import 'package:mobile/data/models/organization.model.dart';
 import 'package:mobile/generated/assets.gen.dart';
 import 'package:mobile/generated/locale_keys.g.dart';
@@ -48,7 +49,7 @@ class OrganizationInfo extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  organization.name,
+                  organization.name ?? '',
                   style: TextStyles.boldBody16
                       .copyWith(color: ColorStyles.primary1),
                   maxLines: 2,
@@ -64,8 +65,8 @@ class OrganizationInfo extends StatelessWidget {
                       '${LocaleKeys.texts_rate.tr()}: ',
                       style: TextStyles.regularBody14,
                     ),
-                    const StarRating(
-                      rating: 4,
+                    StarRating(
+                      rating: organization.rating?.floor() ?? 0,
                       size: 16,
                       color: ColorStyles.zodiacBlue,
                     ),
@@ -74,10 +75,17 @@ class OrganizationInfo extends StatelessWidget {
               ],
             ),
           ),
-          const Icon(
-            Icons.message_outlined,
-            color: ColorStyles.zodiacBlue,
-            size: 18,
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(
+                AppRoutes.chat,
+              );
+            },
+            icon: const Icon(
+              Icons.message_outlined,
+              color: ColorStyles.zodiacBlue,
+              size: 24,
+            ),
           ),
         ],
       ),

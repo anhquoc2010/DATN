@@ -30,8 +30,8 @@ class ListOrganization extends StatelessWidget {
 
         return AvatarInfoCard(
           avatar: currentOrganization.avatar,
-          description: currentOrganization.description,
-          title: currentOrganization.name,
+          description: currentOrganization.description ?? '',
+          title: currentOrganization.name ?? '',
           onTap: () {
             _switchToOrganizationMode(context, currentOrganization);
           },

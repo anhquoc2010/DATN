@@ -10,14 +10,14 @@ FeedbackToCampaignDTO _$FeedbackToCampaignDTOFromJson(
         Map<String, dynamic> json) =>
     FeedbackToCampaignDTO(
       images: json['image'] as List<dynamic>?,
-      locationRate: json['locationRate'] as int? ?? 0,
+      locationRate: (json['locationRate'] as num?)?.toInt() ?? 0,
       traffic: json['traffic'] as String?,
       weather: json['weather'] as String?,
       sanitization: json['sanitization'] as String?,
       residence: json['residence'] as String?,
       authorityCooperation: json['authorityCooperation'] as String?,
       others: json['others'] as String?,
-      campaignId: json['campaignId'] as int?,
+      campaignId: (json['campaignId'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$FeedbackToCampaignDTOToJson(

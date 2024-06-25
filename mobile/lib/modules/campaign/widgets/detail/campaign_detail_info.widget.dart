@@ -47,7 +47,7 @@ class CampaignDetailInfo extends StatelessWidget {
         children: [
           IconTitle(
             icon: Icons.fmd_good_outlined,
-            title: campaign.address,
+            title: campaign.fullAddress,
           ),
           _verticalSpacing,
           Row(

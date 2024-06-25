@@ -5,10 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/common/constants/handle_status.enum.dart';
 import 'package:mobile/common/utils/conditional_render.util.dart';
 import 'package:mobile/common/widgets/custom_app_bar.widget.dart';
-import 'package:mobile/data/repositories/campaign.repository.dart';
-import 'package:mobile/di/di.dart';
 import 'package:mobile/generated/locale_keys.g.dart';
-import 'package:mobile/modules/auth/auth.dart';
 import 'package:mobile/modules/campaign/bloc/management/campaign_management.bloc.dart';
 import 'package:mobile/modules/campaign/widgets/management/add_campaign_fab.widget.dart';
 import 'package:mobile/modules/campaign/widgets/management/campaign_get_common_error.widget.dart';
@@ -19,13 +16,7 @@ class CampaignManagementPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CampaignManagementBloc(
-        campaignRepository: getIt.get<CampaignRepository>(),
-        authBloc: context.read<AuthBloc>(),
-      ),
-      child: const _CampaignManagementView(),
-    );
+    return const _CampaignManagementView();
   }
 }
 
@@ -55,7 +46,7 @@ class _CampaignManagementView extends StatelessWidget {
                       ),
                   HandleStatus.error: (_) =>
                       const Center(child: CampaignGetCommonError()),
-                  HandleStatus.initial: (_) => const SizedBox(),
+                  HandleStatus.initial: (_) => const SizedBox.shrink(),
                 },
                 fallbackBuilder: (_) {
                   if (state.campaigns.isEmpty) {
@@ -65,7 +56,7 @@ class _CampaignManagementView extends StatelessWidget {
                       ),
                     );
                   }
-      
+
                   return ListCampaigns(campaigns: state.campaigns);
                 },
               );

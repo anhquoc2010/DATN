@@ -9,7 +9,7 @@ part of 'province.model.dart';
 ProvinceModel _$ProvinceModelFromJson(Map<String, dynamic> json) =>
     ProvinceModel(
       provinceName: json['name'] as String,
-      provinceCode: json['code'] as int,
+      provinceCode: (json['code'] as num).toInt(),
     );
 
 Map<String, dynamic> _$ProvinceModelToJson(ProvinceModel instance) =>

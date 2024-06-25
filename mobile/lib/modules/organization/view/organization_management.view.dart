@@ -51,7 +51,7 @@ class _OrganizationManagementView extends StatelessWidget {
                 HandleStatus.loading: (_) => const LoadingDot(
                       dotColor: ColorStyles.zodiacBlue,
                     ),
-                HandleStatus.initial: (_) => const SizedBox(),
+                HandleStatus.initial: (_) => const SizedBox.shrink(),
               },
               fallbackBuilder: (_) {
                 if (state.organizations.isEmpty) {

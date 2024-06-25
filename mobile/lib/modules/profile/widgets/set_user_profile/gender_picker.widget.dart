@@ -43,7 +43,7 @@ class _GenderPickerState extends State<GenderPicker> {
             color: ColorStyles.zodiacBlue,
           ),
           value: _gender,
-          underline: const SizedBox(),
+          underline: const SizedBox.shrink(),
           onChanged: (bool? value) {
             setState(() {
               _gender = value;

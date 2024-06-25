@@ -6,6 +6,7 @@ import 'package:mobile/data/models/user.model.dart';
 import 'package:mobile/modules/auth/auth.dart';
 import 'package:mobile/modules/campaign/view/donors/campaign_donors.view.dart';
 import 'package:mobile/modules/campaign/view/set/location_search.view.dart';
+import 'package:mobile/modules/chat/chat.dart';
 import 'package:mobile/modules/core/views/root.view.dart';
 import 'package:mobile/modules/campaign/campaign.dart';
 import 'package:mobile/modules/explore/explore.dart';
@@ -35,6 +36,7 @@ abstract class AppRoutes {
   static const String campaignDonation = '/campaignDonation';
   static const String donate = '/donate';
   static const String pendingCampaign = '/pendingCampaign';
+  static const String chat = '/chat';
 
   // Auth
   static const String login = '/login';
@@ -229,6 +231,12 @@ abstract class AppRoutes {
         return MaterialPageRoute(
           builder: (_) {
             return const PendingCampaignPage();
+          },
+        );
+      case chat:
+        return MaterialPageRoute(
+          builder: (_) {
+            return const ChatPage();
           },
         );
       case setOrganization:

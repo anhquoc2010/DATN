@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:location/location.dart';
+import 'package:mobile/data/repositories/campaign.repository.dart';
+import 'package:mobile/data/repositories/place.repository.dart';
+import 'package:mobile/di/di.dart';
 import 'package:mobile/modules/auth/auth.dart';
-import 'package:mobile/modules/campaign/view/management/campaign_management.view.dart';
+import 'package:mobile/modules/campaign/campaign.dart';
 import 'package:mobile/modules/core/bloc/root.bloc.dart';
 import 'package:mobile/modules/core/widgets/app_bottom_navigation_bar.widget.dart';
 import 'package:mobile/modules/core/widgets/custom_lazy_indexed_stack.widget.dart';
@@ -15,8 +19,24 @@ class RootPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => RootBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => RootBloc(),
+        ),
+        BlocProvider(
+          create: (context) => MapBloc(
+            placeRepository: getIt.get<PlaceRepository>(),
+            location: getIt.get<Location>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => CampaignManagementBloc(
+            campaignRepository: getIt.get<CampaignRepository>(),
+            authBloc: context.read<AuthBloc>(),
+          ),
+        ),
+      ],
       child: const _RootView(),
     );
   }

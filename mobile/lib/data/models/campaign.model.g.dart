@@ -8,9 +8,12 @@ part of 'campaign.model.dart';
 
 CampaignModel _$CampaignModelFromJson(Map<String, dynamic> json) =>
     CampaignModel(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String,
-      address: json['address'] as String,
+      location: json['location'] == null
+          ? null
+          : AddressModel.fromJson(json['location'] as Map<String, dynamic>),
+      address: json['address'] as String?,
       specificAddress: json['specificAddress'] as String?,
       isUserJoined: json['joined'] as bool? ?? false,
       isUserGaveFeedback: json['gaveFeedback'] as bool? ?? false,
@@ -35,9 +38,10 @@ CampaignModel _$CampaignModelFromJson(Map<String, dynamic> json) =>
       coordinate: (json['coordinate'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, (e as num).toDouble()),
       ),
-      organizationName: json['organizationName'] as String?,
-      organizationAvatar: json['organizationAvatar'] as String?,
-      organizationId: json['organizationId'] as int?,
+      organization: json['organization'] == null
+          ? null
+          : OrganizationModel.fromJson(
+              json['organization'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CampaignModelToJson(CampaignModel instance) {
@@ -52,7 +56,8 @@ Map<String, dynamic> _$CampaignModelToJson(CampaignModel instance) {
   writeNotNull('id', instance.id);
   val['name'] = instance.name;
   val['image'] = instance.image;
-  val['address'] = instance.address;
+  writeNotNull('location', instance.location?.toJson());
+  writeNotNull('address', instance.address);
   val['specificAddress'] = instance.specificAddress;
   val['coordinate'] = instance.coordinate;
   val['description'] = instance.description;
@@ -62,8 +67,6 @@ Map<String, dynamic> _$CampaignModelToJson(CampaignModel instance) {
   val['registerLink'] = instance.registerLink;
   val['donationRequirement'] = instance.donationRequirement;
   val['otherInformation'] = instance.otherInformation;
-  val['organizationName'] = instance.organizationName;
-  val['organizationAvatar'] = instance.organizationAvatar;
-  val['organizationId'] = instance.organizationId;
+  val['organization'] = instance.organization?.toJson();
   return val;
 }

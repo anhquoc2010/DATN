@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:location/location.dart';
 import 'package:mobile/common/helpers/dio.helper.dart';
 import 'package:mobile/di/providers/dio_provider.dart';
 
@@ -8,4 +9,7 @@ abstract class NetworkModule {
   DioHelper provideDioHelper(DioProvider dioProvider) {
     return DioHelper(dio: dioProvider.getDio());
   }
+
+  @lazySingleton
+  Location provideLocation() => Location();
 }

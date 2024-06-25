@@ -46,7 +46,7 @@ class _UserProfileView extends StatelessWidget {
           ),
         ],
       ),
-      body: const SizedBox(),
+      body: const SizedBox.shrink(),
       backgroundColor: Colors.white,
     );
   }

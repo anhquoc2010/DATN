@@ -9,14 +9,14 @@ part of 'paticipant_feedback.dto.dart';
 ParticipantFeedbackDTO _$ParticipantFeedbackDTOFromJson(
         Map<String, dynamic> json) =>
     ParticipantFeedbackDTO(
-      campaignRate: json['campaignRate'] as int? ?? 0,
+      campaignRate: (json['campaignRate'] as num?)?.toInt() ?? 0,
       campaignFeedback: json['campaignFeedback'] as String?,
-      organizationRate: json['organizationRate'] as int? ?? 0,
+      organizationRate: (json['organizationRate'] as num?)?.toInt() ?? 0,
       organizationFeedback: json['organizationFeedback'] as String?,
       user: json['user'] == null
           ? null
           : UserModel.fromJson(json['user'] as Map<String, dynamic>),
-      campaignId: json['campaignId'] as int?,
+      campaignId: (json['campaignId'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ParticipantFeedbackDTOToJson(

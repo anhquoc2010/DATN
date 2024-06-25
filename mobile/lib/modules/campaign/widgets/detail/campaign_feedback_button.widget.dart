@@ -17,7 +17,7 @@ class CampaignFeedbackButton extends StatelessWidget {
 
   bool isOrgCreateCampaign(AuthState authState) {
     return authState.status.isAuthenticatedOrganization &&
-        authState.currentOrganizationId == campaign.organizationId;
+        authState.currentOrganizationId == campaign.organization?.id;
   }
 
   bool hasOrgFeedback(AuthState authState) {
@@ -55,11 +55,11 @@ class CampaignFeedbackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return context.read<AuthBloc>().state.status.isAuthenticatedOrganization
         ? context.read<AuthBloc>().state.currentOrganizationId ==
-                campaign.organizationId
+                campaign.organization?.id
             ? _buildFeedbackButton(context)
-            : const SizedBox()
+            : const SizedBox.shrink()
         : campaign.isUserJoined
             ? _buildFeedbackButton(context)
-            : const SizedBox();
+            : const SizedBox.shrink();
   }
 }

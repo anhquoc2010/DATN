@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/common/constants/handle_status.enum.dart';
 import 'package:mobile/common/extensions/context.extension.dart';
+import 'package:mobile/common/extensions/string.extension.dart';
 import 'package:mobile/common/theme/app_size.dart';
 import 'package:mobile/common/utils/dialog.util.dart';
 import 'package:mobile/common/utils/toast.util.dart';
@@ -121,7 +122,7 @@ class _SetCampaignViewState extends State<_SetCampaignView> {
   void _setCampaignInfo() {
     _nameController.text = _setCampaign.name ?? '';
     _descriptionController.text = _setCampaign.description ?? '';
-    _addressController.text = _setCampaign.address ?? '';
+    _addressController.text = _setCampaign.fullAddress;
     _specificAddressController.text = _setCampaign.specificAddress ?? '';
     _registerLinkController.text = _setCampaign.registerLink?.trim() ?? '';
     _actifactDonateController.text = _setCampaign.donationRequirement ?? '';
@@ -145,7 +146,7 @@ class _SetCampaignViewState extends State<_SetCampaignView> {
   void _collectDataForSetCampaign(BuildContext context) {
     _setCampaign = _setCampaign.copyWith(
       name: _nameController.text,
-      address: _addressController.text,
+      location: _addressController.text.toAddressModel(),
       specificAddress: _specificAddressController.text,
       description: _descriptionController.text,
       registerLink: _registerLinkController.text == ''

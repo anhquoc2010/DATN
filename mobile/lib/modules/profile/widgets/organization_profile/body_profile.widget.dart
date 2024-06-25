@@ -23,7 +23,7 @@ class BodyProfile extends StatelessWidget {
       children: [
         heightSpace,
         Text(
-          organization.description,
+          organization.description ?? '',
           style: TextStyles.s14RegularText,
           textAlign: TextAlign.justify,
         ),

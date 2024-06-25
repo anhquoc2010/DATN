@@ -21,11 +21,11 @@ class ContactInformation extends StatelessWidget {
         InfoTitle(
           title: LocaleKeys.profile_contact_info.tr(),
         ),
-        IconTitle(icon: Icons.fmd_good_outlined, title: organization.address),
+        IconTitle(icon: Icons.fmd_good_outlined, title: organization.address ?? ''),
         const SizedBox(
           height: 5,
         ),
-        IconTitle(icon: Icons.call_rounded, title: organization.phoneNumber),
+        IconTitle(icon: Icons.call_rounded, title: organization.phoneNumber ?? ''),
       ],
     );
   }

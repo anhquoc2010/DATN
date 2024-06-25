@@ -64,7 +64,7 @@ class InforItemExploreWidget extends StatelessWidget {
 
         // address
         Text(
-          item.address,
+          item.fullAddress,
           style: TextStyles.regularBody14.copyWith(
             color: ColorStyles.zodiacBlue,
           ),
@@ -76,16 +76,23 @@ class InforItemExploreWidget extends StatelessWidget {
         // organization
         Row(
           children: [
-            Assets.icons.icUserGroup.image(
-              height: 20,
-              width: 20,
-            ),
+            item.organization?.avatar != null
+                ? Image.network(
+                    item.organization!.avatar!,
+                    height: 20,
+                    width: 20,
+                    fit: BoxFit.cover,
+                  )
+                : Assets.icons.icUserGroup.image(
+                    height: 20,
+                    width: 20,
+                  ),
             const VerticalDivider(
               width: 8,
               color: Colors.transparent,
             ),
             Text(
-              item.organizationName ?? '',
+              item.organization?.name ?? '',
               style: TextStyles.regularBody14.copyWith(
                 color: ColorStyles.zodiacBlue,
               ),

@@ -106,7 +106,7 @@ class Service {
 
             const createdCampaign = await this.repository.insert(campaignModel);
 
-            if (file) {
+        if (file) {
                 await this.updateOne(organization_id, createdCampaign[0].id, campaignModel, file);
             }
 
@@ -166,10 +166,10 @@ class Service {
                     end_date: createCampaignDto.end_date,
                     register_link: createCampaignDto.register_link,
                     donation_requirement: createCampaignDto.donation_requirement,
-                    ward: createCampaignDto.location.ward,
-                    district: createCampaignDto.location.district,
-                    city: createCampaignDto.location.city,
-                    address: `${createCampaignDto.location.ward}, ${createCampaignDto.location.district}, ${createCampaignDto.location.city}`,
+                    ward: createCampaignDto.ward,
+                    district: createCampaignDto.district,
+                    city: createCampaignDto.city,
+                    address: `${createCampaignDto.ward}, ${createCampaignDto.district}, ${createCampaignDto.city}`,
                     image: url,
                     coordinate: {
                         lat: parseFloat(createCampaignDto.coordinate.lat),
