@@ -164,7 +164,9 @@
     "campaign_number": "{number} dự án",
     "review_number": "{number} đánh giá",
     "gender": "Giới tính",
-    "birthday": "Ngày sinh"
+    "birthday": "Ngày sinh",
+    "switch_to_vietnamese": "Chuyển sang Tiếng Việt",
+    "switch_to_english": "Chuyển sang Tiếng Anh"
   },
   "map": {
     "error_get_markers": "Không thể tải danh sách vị trí",

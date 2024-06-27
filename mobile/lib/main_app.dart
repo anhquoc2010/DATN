@@ -28,7 +28,7 @@ Future<void> mainApp(Flavor flavor) async {
           ],
           path: 'assets/locales',
           fallbackLocale: const Locale('en', 'US'),
-          // startLocale: const Locale('vi', 'VN'),
+          startLocale: const Locale('vi', 'VN'),
           useOnlyLangCode: true,
           assetLoader: const CodegenLoader(),
           child: const MyApp(),

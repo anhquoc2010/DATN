@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/common/extensions/context.extension.dart';
+import 'package:mobile/common/extensions/dynamic.extension.dart';
 import 'package:mobile/common/theme/color_styles.dart';
 import 'package:mobile/common/theme/text_styles.dart';
 import 'package:mobile/data/models/campaign.model.dart';
@@ -42,7 +43,7 @@ class CampaignItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(
                 height,
               ),
-              child: currentCampaign.image == null
+              child: currentCampaign.image.isNullOrEmpty
                   ? Assets.images.imgDefautAvatar.image(
                       height: height,
                       width: height,

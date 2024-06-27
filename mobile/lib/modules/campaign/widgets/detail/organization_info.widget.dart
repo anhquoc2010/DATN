@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/common/extensions/dynamic.extension.dart';
 import 'package:mobile/common/theme/color_styles.dart';
 import 'package:mobile/common/theme/text_styles.dart';
 import 'package:mobile/common/widgets/star_rating.widget.dart';
@@ -26,7 +27,7 @@ class OrganizationInfo extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: organization.avatar == null
+            child: organization.avatar.isNullOrEmpty
                 ? Assets.images.imgDefautAvatar.image(
                     fit: BoxFit.cover,
                     width: _imageHeight,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/common/extensions/dynamic.extension.dart';
 import 'package:mobile/common/theme/app_shadow.wiget.dart';
 import 'package:mobile/common/theme/color_styles.dart';
 import 'package:mobile/common/theme/text_styles.dart';
@@ -35,7 +36,7 @@ class AvatarInfoCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(100),
-              child: avatar == null
+              child: avatar.isNullOrEmpty
                   ? Assets.images.imgDefautAvatar.image(
                       width: 90,
                       height: 90,

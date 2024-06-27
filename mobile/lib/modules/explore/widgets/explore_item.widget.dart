@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/common/extensions/dynamic.extension.dart';
 import 'package:mobile/common/theme/color_styles.dart';
 import 'package:mobile/data/models/campaign.model.dart';
 import 'package:mobile/generated/assets.gen.dart';
@@ -35,7 +36,7 @@ class ExploreItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                child: item.image == null
+                child: item.image.isNullOrEmpty
                     ? Assets.images.imgDefaultCampaign.image(
                         height: 220,
                         width: double.infinity,

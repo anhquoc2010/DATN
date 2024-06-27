@@ -164,7 +164,9 @@
     "campaign_number": "{number} campaigns",
     "review_number": "{number} reviews",
     "gender": "Gender",
-    "birthday": "Birthday"
+    "birthday": "Birthday",
+    "switch_to_vietnamese": "Switch to Vietnamese",
+    "switch_to_english": "Switch to English"
   },
   "map": {
     "error_get_markers": "Cannot load list of locations",

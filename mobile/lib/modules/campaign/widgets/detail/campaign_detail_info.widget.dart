@@ -78,27 +78,40 @@ class CampaignDetailInfo extends StatelessWidget {
             ],
           ),
           _verticalSpacing,
-          RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: '${LocaleKeys.campaign_artifact_type.tr()}: ',
-                  style: TextStyles.s14BoldText.copyWith(color: Colors.green),
-                ),
-                const WidgetSpan(
-                  child: SizedBox(
-                    width: 5,
+          Row(
+            children: [
+              const Icon(
+                Icons.attach_money_rounded,
+                color: ColorStyles.zodiacBlue,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              Expanded(
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '${LocaleKeys.campaign_artifact_type.tr()}: ',
+                        style: TextStyles.s14BoldText,
+                      ),
+                      const WidgetSpan(
+                        child: SizedBox(
+                          width: 5,
+                        ),
+                      ),
+                      TextSpan(
+                        text: (campaign.donationRequirement == '' ||
+                                campaign.donationRequirement == null)
+                            ? LocaleKeys.campaign_artifact_empty.tr()
+                            : campaign.donationRequirement,
+                        style: TextStyles.s14RegularText,
+                      ),
+                    ],
                   ),
                 ),
-                TextSpan(
-                  text: (campaign.donationRequirement == '' ||
-                          campaign.donationRequirement == null)
-                      ? LocaleKeys.campaign_artifact_empty.tr()
-                      : campaign.donationRequirement,
-                  style: TextStyles.s14RegularText,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/common/extensions/dynamic.extension.dart';
 import 'package:mobile/common/theme/text_styles.dart';
 import 'package:mobile/data/models/user.model.dart';
 import 'package:mobile/generated/assets.gen.dart';
@@ -58,7 +59,7 @@ class SummaryInfo extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(60),
-                child: _getAvatarUrl(state.user!) == null
+                child: _getAvatarUrl(state.user!).isNullOrEmpty
                     ? Assets.images.imgDefautAvatar.image(
                         width: 60,
                         height: 60,

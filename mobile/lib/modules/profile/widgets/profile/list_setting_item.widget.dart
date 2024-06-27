@@ -8,8 +8,40 @@ import 'package:mobile/modules/auth/auth.dart';
 import 'package:mobile/modules/profile/widgets/profile/setting_item.widget.dart';
 import 'package:mobile/configs/router/app_routes.dart';
 
-class ListSettingItem extends StatelessWidget {
+class ListSettingItem extends StatefulWidget {
   const ListSettingItem({super.key});
+
+  @override
+  State<ListSettingItem> createState() => _ListSettingItemState();
+}
+
+class _ListSettingItemState extends State<ListSettingItem> {
+  String _localeName = '';
+
+  void _getLocales(BuildContext context) {
+    setState(() {
+      _localeName = Localizations.localeOf(context).languageCode.toUpperCase();
+    });
+  }
+
+  Future<void> _onSwitchLanguage(BuildContext context) async {
+    if (_localeName == 'EN') {
+      EasyLocalization.of(context)!.setLocale(
+        const Locale('vi', 'VN'),
+      );
+    } else {
+      EasyLocalization.of(context)!.setLocale(
+        const Locale('en', 'US'),
+      );
+    }
+    if (mounted) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        AppRoutes.root,
+        (route) => false,
+      );
+    }
+  }
 
   void _switchMode(BuildContext context) {
     if (context.read<AuthBloc>().state.status.isAuthenticatedOrganization) {
@@ -21,6 +53,7 @@ class ListSettingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _getLocales(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -28,30 +61,39 @@ class ListSettingItem extends StatelessWidget {
           LocaleKeys.profile_preferences.tr(),
           style: TextStyles.s17MediumText,
         ),
+        // SettingItem(
+        //   title: LocaleKeys.profile_setting.tr(),
+        //   icon: Assets.icons.icSetting.image(),
+        //   onTap: () {},
+        // ),
+        // SettingItem(
+        //   title: LocaleKeys.profile_about_us.tr(),
+        //   icon: Assets.icons.icStar.image(),
+        //   onTap: () {},
+        // ),
+        // SettingItem(
+        //   title: LocaleKeys.profile_share_this_app.tr(),
+        //   icon: Assets.icons.icShare.image(),
+        //   onTap: () {},
+        // ),
+        // SettingItem(
+        //   title: LocaleKeys.profile_help_center.tr(),
+        //   icon: Assets.icons.icSupport.image(),
+        //   onTap: () {},
+        // ),
+        // SettingItem(
+        //   title: LocaleKeys.profile_delete_account.tr(),
+        //   icon: Assets.icons.icRemoveUser.image(),
+        //   onTap: () {},
+        // ),
         SettingItem(
-          title: LocaleKeys.profile_setting.tr(),
-          icon: Assets.icons.icSetting.image(),
-          onTap: () {},
-        ),
-        SettingItem(
-          title: LocaleKeys.profile_about_us.tr(),
-          icon: Assets.icons.icStar.image(),
-          onTap: () {},
-        ),
-        SettingItem(
-          title: LocaleKeys.profile_share_this_app.tr(),
-          icon: Assets.icons.icShare.image(),
-          onTap: () {},
-        ),
-        SettingItem(
-          title: LocaleKeys.profile_help_center.tr(),
-          icon: Assets.icons.icSupport.image(),
-          onTap: () {},
-        ),
-        SettingItem(
-          title: LocaleKeys.profile_delete_account.tr(),
-          icon: Assets.icons.icRemoveUser.image(),
-          onTap: () {},
+          title: _localeName == 'EN'
+              ? LocaleKeys.profile_switch_to_vietnamese.tr()
+              : LocaleKeys.profile_switch_to_english.tr(),
+          icon: Assets.icons.icInternet.image(color: Colors.green),
+          onTap: () {
+            _onSwitchLanguage(context);
+          },
         ),
         SettingItem(
           title:

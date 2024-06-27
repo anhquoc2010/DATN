@@ -157,6 +157,8 @@ abstract class  LocaleKeys {
   static const profile_review_number = 'profile.review_number';
   static const profile_gender = 'profile.gender';
   static const profile_birthday = 'profile.birthday';
+  static const profile_switch_to_vietnamese = 'profile.switch_to_vietnamese';
+  static const profile_switch_to_english = 'profile.switch_to_english';
   static const profile = 'profile';
   static const map_error_get_markers = 'map.error_get_markers';
   static const map_location_error = 'map.location_error';

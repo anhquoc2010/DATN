@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/common/extensions/dynamic.extension.dart';
 import 'package:mobile/common/theme/color_styles.dart';
 import 'package:mobile/common/theme/text_styles.dart';
 import 'package:mobile/common/widgets/star_rating.widget.dart';
@@ -29,12 +30,18 @@ class HeaderProfile extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(avatarRadius),
-            child: Image.network(
-              organization.avatar!,
-              fit: BoxFit.cover,
-              width: 90,
-              height: 90,
-            ),
+            child: organization.avatar.isNullOrEmpty
+                ? Assets.images.imgDefautAvatar.image(
+                    width: 90,
+                    height: 90,
+                    fit: BoxFit.cover,
+                  )
+                : Image.network(
+                    organization.avatar!,
+                    width: 90,
+                    height: 90,
+                    fit: BoxFit.cover,
+                  ),
           ),
           horizontalSpacing,
           Expanded(

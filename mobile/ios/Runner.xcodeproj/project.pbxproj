@@ -526,7 +526,7 @@
 				DEVELOPMENT_TEAM = 47F26D25PZ;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "i386 arm64";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Debug-dev";
@@ -538,7 +538,7 @@
 				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = 47F26D25PZ;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Profile-dev";
@@ -550,7 +550,7 @@
 				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = 47F26D25PZ;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Release-dev";
@@ -562,7 +562,7 @@
 				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = 47F26D25PZ;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Debug-qa";
@@ -574,7 +574,7 @@
 				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = 47F26D25PZ;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Profile-qa";
@@ -586,7 +586,7 @@
 				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = 47F26D25PZ;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Release-qa";
@@ -598,7 +598,7 @@
 				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = 47F26D25PZ;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Debug-staging";
@@ -610,7 +610,7 @@
 				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = 47F26D25PZ;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Profile-staging";
@@ -622,7 +622,7 @@
 				CURRENT_PROJECT_VERSION = "";
 				DEVELOPMENT_TEAM = 47F26D25PZ;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_NAME = Runner;
 			};
 			name = "Release-staging";
@@ -760,7 +760,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdscdut.sharinghub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1102,7 +1102,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdscdut.sharinghub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1127,7 +1127,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gdscdut.sharinghub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";

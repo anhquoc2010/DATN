@@ -46,6 +46,7 @@ class SetCampaignDTO {
     this.organizationId,
   });
 
+  @JsonKey(includeToJson: false)
   String get fullAddress => '$specificAddress, $address';
 
   Map<String, dynamic> toJson() => _$SetCampaignDTOToJson(this);

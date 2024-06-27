@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:mobile/common/extensions/context.extension.dart';
+import 'package:mobile/common/extensions/dynamic.extension.dart';
 import 'package:mobile/common/theme/color_styles.dart';
 import 'package:mobile/common/theme/text_styles.dart';
 import 'package:mobile/common/utils/conditional_render.util.dart';
@@ -188,7 +189,7 @@ class _ShowOrPickMultipleImageState extends State<ShowOrPickMultipleImage> {
             ),
             child: ConditionalRenderUtil.single(
               context,
-              value: imagePaths == null || index > imagePaths!.length - 1
+              value: imagePaths.isNullOrEmpty || index > imagePaths!.length - 1
                   ? null
                   : ImageUtil.getImageType(imagePaths![index]!),
               caseBuilders: {

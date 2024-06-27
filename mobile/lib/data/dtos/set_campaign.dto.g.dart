@@ -27,6 +27,5 @@ Map<String, dynamic> _$SetCampaignDTOToJson(SetCampaignDTO instance) {
   writeNotNull('registerLink', instance.registerLink);
   writeNotNull('donationRequirement', instance.donationRequirement);
   writeNotNull('otherInformation', instance.otherInformation);
-  val['fullAddress'] = instance.fullAddress;
   return val;
 }

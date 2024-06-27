@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/common/extensions/dynamic.extension.dart';
 import 'package:mobile/common/theme/color_styles.dart';
 import 'package:mobile/common/widgets/app_read_more_text.widget.dart';
 import 'package:mobile/generated/assets.gen.dart';
@@ -39,7 +40,7 @@ class _ImageAndDescriptionState extends State<ImageAndDescription> {
                 ) =>
                     ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: widget.image == null
+                  child: widget.image.isNullOrEmpty
                       ? Assets.images.imgDefaultCampaign.image(
                           height: 200,
                           width: double.infinity,

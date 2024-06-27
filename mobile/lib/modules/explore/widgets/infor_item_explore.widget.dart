@@ -76,7 +76,7 @@ class InforItemExploreWidget extends StatelessWidget {
         // organization
         Row(
           children: [
-            item.organization?.avatar != null
+            item.organization?.avatar != null && item.organization!.avatar!.isNotEmpty
                 ? Image.network(
                     item.organization!.avatar!,
                     height: 20,

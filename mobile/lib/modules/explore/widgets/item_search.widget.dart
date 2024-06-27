@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/common/extensions/dynamic.extension.dart';
 import 'package:mobile/common/theme/color_styles.dart';
 import 'package:mobile/common/theme/text_styles.dart';
 import 'package:mobile/data/models/campaign.model.dart';
@@ -37,7 +38,7 @@ class ItemSearchWidget extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: item.image == null
+                  child: item.image.isNullOrEmpty
                       ? Assets.images.imgDefaultCampaignSquare.image(
                           width: imageSize,
                           height: imageSize,
