@@ -9,13 +9,13 @@ export class OrderFactory {
     };
     static getOrder(param, lat, lng, direction) {
         switch(param) {
-            case OrderTypeEnum.PROXIMITY:
+            case this.OrderTypeEnum.PROXIMITY:
                 return new CampaignByProximityOrder(lat, lng, direction);
-            case OrderTypeEnum.PASSED_ONGOING_UPCOMING:
+            case this.OrderTypeEnum.PASSED_ONGOING_UPCOMING:
                 return new CampaignStatusOrder(3, 2, 1, direction);
-            case OrderTypeEnum.UPCOMING_PASSED_ONGOING:
+            case this.OrderTypeEnum.UPCOMING_PASSED_ONGOING:
                 return new CampaignStatusOrder(1, 3, 2, direction);
-            case OrderTypeEnum.PASSED_UPCOMING_ONGOING:
+            case this.OrderTypeEnum.PASSED_UPCOMING_ONGOING:
                 return new CampaignStatusOrder(2, 3, 1, direction);
             default:
                 throw new Error('Order not found');
