@@ -11,12 +11,12 @@ part 'user.model.g.dart';
   explicitToJson: true,
 )
 class UserModel extends Equatable {
-  final int id;
+  final int? id;
   final String? avatar;
-  final String fullName;
+  final String? fullName;
   final String? phoneNumber;
   final bool? gender;
-  final String email;
+  final String? email;
   final DateTime? birthDay;
   final String? address;
   final String? workSpace;
@@ -73,6 +73,13 @@ class UserModel extends Equatable {
         birthDay,
         address,
         workSpace,
+        projectPending,
+        projectCompleted,
+        projectOnGoing,
+        currentOrganization,
+        pendingCampaigns,
+        ongoingCampaigns,
+        totalFeedbacks,
       ];
 
   UserModel copyWith({
@@ -89,6 +96,9 @@ class UserModel extends Equatable {
     int? projectCompleted,
     int? projectOnGoing,
     Wrapped<OrganizationModel?>? currentOrganization,
+    int? pendingCampaigns,
+    int? ongoingCampaigns,
+    int? totalFeedbacks,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -106,6 +116,9 @@ class UserModel extends Equatable {
       currentOrganization: currentOrganization == null
           ? this.currentOrganization
           : currentOrganization.value,
+      pendingCampaigns: pendingCampaigns ?? this.pendingCampaigns,
+      ongoingCampaigns: ongoingCampaigns ?? this.ongoingCampaigns,
+      totalFeedbacks: totalFeedbacks ?? this.totalFeedbacks,
     );
   }
 

@@ -234,9 +234,15 @@ abstract class AppRoutes {
           },
         );
       case chat:
+        final argumentWrapper =
+            settings.arguments as ArgumentWrapper2<UserModel?, OrganizationModel?>;
+
         return MaterialPageRoute(
           builder: (_) {
-            return const ChatPage();
+            return ChatPage(
+              organization: argumentWrapper.param2,
+              user: argumentWrapper.param1,
+            );
           },
         );
       case setOrganization:

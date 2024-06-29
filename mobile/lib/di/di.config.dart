@@ -19,6 +19,7 @@ import 'package:mobile/data/datasources/local/user_local.datasource.dart'
 import 'package:mobile/data/datasources/remote/address.datasource.dart' as _i15;
 import 'package:mobile/data/datasources/remote/campaign.datasource.dart'
     as _i17;
+import 'package:mobile/data/datasources/remote/chat.datasource.dart' as _i19;
 import 'package:mobile/data/datasources/remote/organization.datasource.dart'
     as _i9;
 import 'package:mobile/data/datasources/remote/place.datasource.dart' as _i11;
@@ -26,11 +27,12 @@ import 'package:mobile/data/datasources/remote/user_remote.datasource.dart'
     as _i13;
 import 'package:mobile/data/repositories/address.repository.dart' as _i16;
 import 'package:mobile/data/repositories/campaign.repository.dart' as _i18;
+import 'package:mobile/data/repositories/chat.repository.dart' as _i20;
 import 'package:mobile/data/repositories/organization.repository.dart' as _i10;
 import 'package:mobile/data/repositories/place.repository.dart' as _i12;
 import 'package:mobile/data/repositories/user.repository.dart' as _i14;
-import 'package:mobile/di/modules/local_module.dart' as _i19;
-import 'package:mobile/di/modules/network_module.dart' as _i20;
+import 'package:mobile/di/modules/local_module.dart' as _i21;
+import 'package:mobile/di/modules/network_module.dart' as _i22;
 import 'package:mobile/di/providers/dio_provider.dart' as _i4;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -83,9 +85,13 @@ Future<_i1.GetIt> initGetIt(
       () => _i17.CampaignDataSource(dioHelper: gh<_i8.DioHelper>()));
   gh.lazySingleton<_i18.CampaignRepository>(
       () => _i18.CampaignRepository(dataSource: gh<_i17.CampaignDataSource>()));
+  gh.lazySingleton<_i19.ChatDataSource>(
+      () => _i19.ChatDataSource(dioHelper: gh<_i8.DioHelper>()));
+  gh.lazySingleton<_i20.ChatRepository>(
+      () => _i20.ChatRepository(dataSource: gh<_i19.ChatDataSource>()));
   return getIt;
 }
 
-class _$LocalModule extends _i19.LocalModule {}
+class _$LocalModule extends _i21.LocalModule {}
 
-class _$NetworkModule extends _i20.NetworkModule {}
+class _$NetworkModule extends _i22.NetworkModule {}

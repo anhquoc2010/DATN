@@ -7,6 +7,7 @@ import 'package:mobile/data/dtos/paticipant_feedback.dto.dart';
 import 'package:mobile/data/dtos/set_campaign.dto.dart';
 import 'package:mobile/data/models/address.model.dart';
 import 'package:mobile/data/models/organization.model.dart';
+import 'package:mobile/data/models/user.model.dart';
 import 'package:mobile/generated/locale_keys.g.dart';
 
 part 'campaign.model.g.dart';
@@ -39,6 +40,10 @@ class CampaignModel {
   @JsonKey(includeToJson: false)
   final List<ParticipantFeedbackDTO> userFeedbacks;
   final OrganizationModel? organization;
+  @JsonKey(includeToJson: false)
+  final List<UserModel> volunteers;
+  @JsonKey(includeToJson: false)
+  final List<UserModel> donors;
 
   bool get isUpcoming => startDate.isAfter(DateTime.now());
   bool get isOngoing =>
@@ -54,6 +59,7 @@ class CampaignModel {
           : LocaleKeys.campaign_ended.tr();
 
   String get fullDate => '${startDate.toDisplay} - ${endDate.toDisplay}';
+
 
   CampaignModel({
     this.id,
@@ -74,6 +80,8 @@ class CampaignModel {
     this.feedback,
     this.coordinate,
     this.organization,
+    this.volunteers = const [],
+    this.donors = const [],
   });
 
   String get fullAddress => '$specificAddress, $address';

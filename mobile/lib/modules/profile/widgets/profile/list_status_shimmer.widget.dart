@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/generated/assets.gen.dart';
 import 'package:mobile/generated/locale_keys.g.dart';
-import 'package:mobile/modules/auth/auth.dart';
+import 'package:mobile/modules/profile/profile.dart';
 import 'package:mobile/modules/profile/widgets/profile/item_profile_campaign.widget.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ListStatus extends StatelessWidget {
-  final bool isLoading;
-
-  const ListStatus({super.key, this.isLoading = false});
+  const ListStatus({super.key});
 
   final Widget _verticalSpacing = const SizedBox(
     height: 4,
@@ -52,9 +50,9 @@ class ListStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthBloc, AuthState>(
+    return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
-        return isLoading
+        return state.status.isLoading
             ? _getShimmerLoading()
             : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

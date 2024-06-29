@@ -43,4 +43,8 @@ class AppFlavor {
   static String get addressURL {
     return const String.fromEnvironment(EnvKeys.localtionUrl);
   }
+
+  static String get chatApiUrl {
+    return const String.fromEnvironment(EnvKeys.chatApiUrl);
+  }
 }

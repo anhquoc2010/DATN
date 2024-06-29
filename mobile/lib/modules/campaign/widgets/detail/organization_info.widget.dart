@@ -1,13 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/common/extensions/dynamic.extension.dart';
 import 'package:mobile/common/theme/color_styles.dart';
 import 'package:mobile/common/theme/text_styles.dart';
 import 'package:mobile/common/widgets/star_rating.widget.dart';
 import 'package:mobile/configs/router/app_routes.dart';
 import 'package:mobile/data/models/organization.model.dart';
+import 'package:mobile/data/models/user.model.dart';
 import 'package:mobile/generated/assets.gen.dart';
 import 'package:mobile/generated/locale_keys.g.dart';
+import 'package:mobile/modules/auth/auth.dart';
 import 'package:mobile/modules/campaign/widgets/detail/info_card.widget.dart';
 
 class OrganizationInfo extends StatelessWidget {
@@ -76,18 +79,24 @@ class OrganizationInfo extends StatelessWidget {
               ],
             ),
           ),
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(
-                AppRoutes.chat,
-              );
-            },
-            icon: const Icon(
-              Icons.message_outlined,
-              color: ColorStyles.zodiacBlue,
-              size: 24,
-            ),
-          ),
+          !context.read<AuthBloc>().state.status.isAuthenticatedOrganization
+              ? IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(
+                      AppRoutes.chat,
+                      arguments: ArgumentWrapper2<UserModel?, OrganizationModel?>(
+                        param1: context.read<AuthBloc>().state.user ,
+                        param2: organization,
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.message_outlined,
+                    color: ColorStyles.zodiacBlue,
+                    size: 24,
+                  ),
+                )
+              : const SizedBox.shrink(),
         ],
       ),
     );

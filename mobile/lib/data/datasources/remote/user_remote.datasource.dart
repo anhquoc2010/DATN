@@ -33,7 +33,8 @@ class UserRemoteDataSource {
   }
 
   Future<UserModel> getUserProfile() async {
-    return UserMock.getUserProfile();
+    final result = await _dioHelper.get(Endpoints.user);
+    return UserModel.fromJson(result.body);
   }
 
   Future<void> setUser(SetUserDTO params) async {

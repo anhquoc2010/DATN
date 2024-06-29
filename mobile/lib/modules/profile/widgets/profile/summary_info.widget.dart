@@ -21,7 +21,7 @@ class SummaryInfo extends StatelessWidget {
   String _getTitle(UserModel user) {
     return user.isOrganizationMode
         ? (user.currentOrganization?.name ?? '')
-        : user.fullName;
+        : (user.fullName ?? '');
   }
 
   String _getSubTitle(UserModel user) {

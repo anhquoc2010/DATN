@@ -39,5 +39,10 @@ export const UserResolver = Module.builder()
             route: '/dont-have-org',
             method: 'get',
             controller: UserController.findAllUserNoOrg,
-        }
+        },
+        {
+            route: '/:id',
+            method: 'get',
+            controller: UserController.findById,
+        },
     ]);

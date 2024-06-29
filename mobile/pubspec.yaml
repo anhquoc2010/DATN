@@ -69,6 +69,7 @@ dependencies:
   firebase_crashlytics: ^3.4.15
   location: ^6.0.2
   dash_chat_2: ^0.0.20
+  collection: ^1.18.0
 
 dev_dependencies:
   flutter_test:

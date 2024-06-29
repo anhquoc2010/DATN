@@ -114,15 +114,16 @@ class AppBottomNavigationBar extends StatelessWidget {
                       label: LocaleKeys.root_management.tr(),
                     ),
                   BottomNavigationBarItem(
-                    icon: Assets.icons.bottomNavigation.notifications.svg(
-                      height: _iconSize,
-                      width: _iconSize,
-                      colorFilter: _getColorFilter(
-                        !_isAuthenticatedOrganization(context) &&
-                                state.currentIndex == 2 ||
-                            _isAuthenticatedOrganization(context) &&
-                                state.currentIndex == 3,
-                      ),
+                    icon: Icon(
+                      Icons.chat_outlined,
+                      size: _iconSize,
+                      // width: _iconSize,
+                      // color: _getColorFilter(
+                      //   !_isAuthenticatedOrganization(context) &&
+                      //           state.currentIndex == 2 ||
+                      //       _isAuthenticatedOrganization(context) &&
+                      //           state.currentIndex == 3,
+                      // ),
                     ),
                     label: LocaleKeys.texts_notification.tr(),
                   ),

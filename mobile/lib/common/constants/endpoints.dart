@@ -3,6 +3,7 @@ import 'package:mobile/flavors.dart';
 abstract class Endpoints {
   static String apiUrl = '${AppFlavor.apiBaseUrl}/api/v1';
   static String addressUrl = '${AppFlavor.addressURL}/api';
+  static String chatApiUrl = '${AppFlavor.chatApiUrl}/api';
 
   static String login = '$apiUrl/auth/login';
   static String register = '$apiUrl/auth/register';
@@ -32,4 +33,9 @@ abstract class Endpoints {
 
   static String province = '$addressUrl/p';
   static String district = '$addressUrl/d';
+
+  // Chat
+  static String message = '$chatApiUrl/v1/message';
+  static String thread = '$chatApiUrl/v1/thread';
+  static String chat = '$chatApiUrl/v1/chat';
 }

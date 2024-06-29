@@ -2,17 +2,21 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/common/theme/color_styles.dart';
 import 'package:mobile/common/theme/text_styles.dart';
-import 'package:mobile/data/datasources/user.mock.dart';
 import 'package:mobile/data/models/user.model.dart';
 import 'package:mobile/generated/locale_keys.g.dart';
 import 'package:mobile/modules/campaign/widgets/detail/info_card.widget.dart';
 import 'package:mobile/configs/router/app_routes.dart';
 
 class CampaignDetailDonorsWidget extends StatelessWidget {
-  CampaignDetailDonorsWidget({super.key});
+  const CampaignDetailDonorsWidget({
+    super.key,
+    required List<UserModel> listDonors,
+    required List<UserModel> listVolunteers,
+  })  : _listDonors = listDonors,
+        _listVolunteers = listVolunteers;
 
-  final List<UserModel> _listDonors = UserMock.getRandomUser(20);
-  final List<UserModel> _listVolunteers = UserMock.getRandomUser(16);
+  final List<UserModel> _listDonors;
+  final List<UserModel> _listVolunteers;
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +102,7 @@ class _ListDonors extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(user.fullName),
+                  Text(user.fullName ?? ''),
                   Text(
                     user.phoneNumber ?? '',
                   ),
@@ -106,7 +110,7 @@ class _ListDonors extends StatelessWidget {
               ),
             );
           },
-          itemCount: 3,
+          itemCount: users.length > 3 ? 3 : users.length,
           primary: false,
         ),
         Center(

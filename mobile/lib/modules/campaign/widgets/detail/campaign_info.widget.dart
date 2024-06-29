@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/common/extensions/context.extension.dart';
 import 'package:mobile/data/models/campaign.model.dart';
 import 'package:mobile/data/models/organization.model.dart';
+import 'package:mobile/modules/auth/auth.dart';
 import 'package:mobile/modules/campaign/campaign.dart';
 import 'package:mobile/modules/campaign/widgets/detail/campaign_detail_donors.widget.dart';
 import 'package:mobile/modules/campaign/widgets/detail/campaign_feedback_button.widget.dart';
@@ -24,8 +25,12 @@ class CampaignInfo extends StatelessWidget {
     height: 10,
   );
 
-  Widget _buildEndContentCampaign(CampaignModel campaign) {
-    if (campaign.isUpcoming) {
+  Widget _buildEndContentCampaign(
+    CampaignModel campaign,
+    BuildContext context,
+  ) {
+    if (campaign.isUpcoming &&
+        !context.read<AuthBloc>().state.status.isAuthenticatedOrganization) {
       return BlocBuilder<CampaignDetailBloc, CampaignDetailState>(
         builder: (context, state) {
           return CampaignRequestJoin(
@@ -71,11 +76,15 @@ class CampaignInfo extends StatelessWidget {
               ), // address, description, phone is not to show, so we can pass empty string
             ),
             _verticalSpacing,
-            if (!campaign.isEnded) CampaignDetailDonorsWidget(),
+            if (!campaign.isEnded)
+              CampaignDetailDonorsWidget(
+                listVolunteers: campaign.volunteers,
+                listDonors: campaign.donors,
+              ),
             if (campaign.isEnded && campaign.hasFeedback)
               CampaignOrgFeedback(campaign: campaign),
             _verticalSpacing,
-            _buildEndContentCampaign(campaign),
+            _buildEndContentCampaign(campaign, context),
           ],
         ),
       ),

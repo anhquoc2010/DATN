@@ -13,8 +13,13 @@ class Controller {
     };
 
     findById = async req => {
-        const data = await this.service.findById(req.user.payload.id);
-        return ValidHttpResponse.toOkResponse(data);
+        if (req.params.id) {
+            const data = await this.service.findById(req.params.id);
+            return ValidHttpResponse.toOkResponse(data);
+        } else {
+            const data = await this.service.findById(req.user.payload.id);
+            return ValidHttpResponse.toOkResponse(data);
+        }
     };
 
     findVoluntaryCampaignsByUserId = async req => {

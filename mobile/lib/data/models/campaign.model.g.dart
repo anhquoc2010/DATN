@@ -42,6 +42,14 @@ CampaignModel _$CampaignModelFromJson(Map<String, dynamic> json) =>
           ? null
           : OrganizationModel.fromJson(
               json['organization'] as Map<String, dynamic>),
+      volunteers: (json['volunteers'] as List<dynamic>?)
+              ?.map((e) => UserModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      donors: (json['donors'] as List<dynamic>?)
+              ?.map((e) => UserModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$CampaignModelToJson(CampaignModel instance) {

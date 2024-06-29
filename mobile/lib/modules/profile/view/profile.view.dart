@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/common/theme/app_size.dart';
 import 'package:mobile/common/theme/color_styles.dart';
-import 'package:mobile/modules/auth/auth.dart';
+import 'package:mobile/data/repositories/user.repository.dart';
+import 'package:mobile/di/di.dart';
 import 'package:mobile/modules/profile/widgets/profile/list_status_shimmer.widget.dart';
 import 'package:mobile/modules/profile/bloc/profile/profile.bloc.dart';
 import 'package:mobile/modules/profile/widgets/profile/list_setting_item.widget.dart';
@@ -15,7 +16,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => ProfileBloc(
-        authBloc: context.read<AuthBloc>(),
+        userRepository: getIt.get<UserRepository>(),
       ),
       child: const _ProfileView(),
     );
@@ -40,20 +41,27 @@ class _ProfileView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(AppSize.horizontalSpace),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SummaryInfo(),
-              const Divider(
-                color: ColorStyles.gray300,
-                height: 40,
-              ),
-              const ListStatus(),
-              _verticalSpacing,
-              const ListSettingItem(),
-            ],
+        child: RefreshIndicator(
+          onRefresh: () async {
+            context.read<ProfileBloc>().add(const ProfileEventStarted());
+          },
+          child: SingleChildScrollView(
+            clipBehavior: Clip.none,
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsets.all(AppSize.horizontalSpace),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SummaryInfo(),
+                const Divider(
+                  color: ColorStyles.gray300,
+                  height: 40,
+                ),
+                const ListStatus(),
+                _verticalSpacing,
+                const ListSettingItem(),
+              ],
+            ),
           ),
         ),
       ),
