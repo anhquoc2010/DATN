@@ -43,4 +43,9 @@ class UserRemoteDataSource {
       formData: params.toJson(),
     );
   }
+
+  Future<UserModel> getUserById(int id) async {
+    final result = await _dioHelper.get('${Endpoints.userById}/$id');
+    return UserModel.fromJson(result.body['data'][0]);
+  }
 }

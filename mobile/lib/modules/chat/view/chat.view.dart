@@ -9,6 +9,8 @@ import 'package:mobile/data/models/message.model.dart';
 import 'package:mobile/data/models/organization.model.dart';
 import 'package:mobile/data/models/user.model.dart';
 import 'package:mobile/data/repositories/chat.repository.dart';
+import 'package:mobile/data/repositories/organization.repository.dart';
+import 'package:mobile/data/repositories/user.repository.dart';
 import 'package:mobile/di/di.dart';
 import 'package:mobile/modules/auth/auth.dart';
 import 'package:mobile/modules/chat/chat.dart';
@@ -26,8 +28,11 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => ChatBloc(chatRepository: getIt.get<ChatRepository>())
-        ..add(
+      create: (_) => ChatBloc(
+        chatRepository: getIt.get<ChatRepository>(),
+        userRepository: getIt.get<UserRepository>(),
+        organizationRepository: getIt.get<OrganizationRepository>(),
+      )..add(
           ChatFetch(
             userId: user?.id ?? 0,
             organizationId: organization?.id ?? 0,

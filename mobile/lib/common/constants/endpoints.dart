@@ -10,6 +10,7 @@ abstract class Endpoints {
 
   // User
   static String user = '$apiUrl/users/me';
+  static String userById = '$apiUrl/users';
 
   // Organization
   static String organization = '$apiUrl/organizations';

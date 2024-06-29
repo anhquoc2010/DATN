@@ -1,6 +1,7 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
 abstract class  LocaleKeys {
+  static const texts_chat_empty = 'texts.chat_empty';
   static const texts_chat = 'texts.chat';
   static const texts_notification = 'texts.notification';
   static const texts_success = 'texts.success';

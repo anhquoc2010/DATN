@@ -1,5 +1,6 @@
 {
   "texts": {
+    "chat_empty": "No messages",
     "chat": "Chat",
     "notification": "Notifications",
     "success": "Success",

@@ -16,6 +16,7 @@ class CodegenLoader extends AssetLoader{
 
   static const Map<String,dynamic> en = {
   "texts": {
+    "chat_empty": "No messages",
     "chat": "Chat",
     "notification": "Notifications",
     "success": "Success",
@@ -214,6 +215,7 @@ class CodegenLoader extends AssetLoader{
 };
 static const Map<String,dynamic> vi = {
   "texts": {
+    "chat_empty": "Không có tin nhắn nào",
     "chat": "Nhắn tin",
     "notification": "Thông báo",
     "success": "Thành công",

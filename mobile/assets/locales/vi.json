@@ -1,5 +1,6 @@
 {
   "texts": {
+    "chat_empty": "Không có tin nhắn nào",
     "chat": "Nhắn tin",
     "notification": "Thông báo",
     "success": "Thành công",

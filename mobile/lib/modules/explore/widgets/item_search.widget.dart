@@ -59,23 +59,22 @@ class ItemSearchWidget extends StatelessWidget {
                       children: [
                         Text(
                           item.name,
-                          style: TextStyles.boldSubti18.copyWith(),
+                          style: TextStyles.boldSubti18,
                         ),
                         const Divider(
                           height: 4,
                           color: Colors.transparent,
                         ),
                         Text(
-                          'Đang diễn ra',
-                          style: TextStyles.regularCaption12
-                              .copyWith(color: Colors.green),
+                          item.statusContent,
+                          style: TextStyles.regularSubti14,
                         ),
                         const Divider(
                           height: 4,
                           color: Colors.transparent,
                         ),
                         Text(
-                          '${item.specificAddress}, ${item.location}',
+                          item.fullAddress,
                           style: TextStyles.regularCaption12,
                         ),
                         const Divider(

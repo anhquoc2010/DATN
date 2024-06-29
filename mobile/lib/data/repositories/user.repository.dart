@@ -43,4 +43,8 @@ class UserRepository {
   Future<void> setUserAuthInfo(LoginResponseDTO? response) {
     return _localDataSource.setUserAuthInfo(response);
   }
+
+  Future<UserModel> getUserById(int id) {
+    return _remoteDataSource.getUserById(id);
+  }
 }

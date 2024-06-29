@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:location/location.dart';
 import 'package:mobile/common/widgets/custom_app_bar.widget.dart';
 import 'package:mobile/data/repositories/campaign.repository.dart';
 import 'package:mobile/di/di.dart';
@@ -17,6 +18,7 @@ class ExplorePage extends StatelessWidget {
     return BlocProvider(
       create: (_) => ExploreBloc(
         repository: getIt.get<CampaignRepository>(),
+        location: getIt.get<Location>(),
       ),
       child: BlocListener<ExploreBloc, ExploreState>(
         listener: (context, state) {},
@@ -48,7 +50,7 @@ class _ExploreView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ExploreDropDownWidget(
-                      sortType: state.sortType!,
+                      sortType: state.sortType ?? SortType.nearest,
                     ),
                     const Divider(
                       height: 10,

@@ -21,27 +21,32 @@ class ExploreState extends Equatable {
   final String? error;
   final List<CampaignModel>? campaigns;
   final SortType? sortType;
+  final LatLng? myLocation;
 
   const ExploreState({
     this.status = HandleStatus.initial,
     this.error,
     this.campaigns,
     this.sortType = SortType.newest,
+    this.myLocation,
   });
 
   const ExploreState.loading({
     this.error,
     this.campaigns,
     this.sortType,
+    this.myLocation,
   }) : status = HandleStatus.loading;
 
   const ExploreState.getSuccess({
     required this.campaigns,
     this.sortType,
+    this.myLocation,
   })  : status = HandleStatus.success,
         error = null;
 
   const ExploreState.getFailure(
+    this.myLocation,
     this.sortType, {
     required this.error,
   })  : status = HandleStatus.error,
@@ -52,12 +57,14 @@ class ExploreState extends Equatable {
     String? error,
     List<CampaignModel>? campaigns,
     SortType? sortType,
+    LatLng? myLocation,
   }) {
     return ExploreState(
       status: status ?? this.status,
       error: error ?? this.error,
       campaigns: campaigns ?? this.campaigns,
       sortType: sortType ?? this.sortType,
+      myLocation: myLocation,
     );
   }
 
@@ -67,5 +74,6 @@ class ExploreState extends Equatable {
         error,
         campaigns,
         sortType,
+        myLocation,
       ];
 }

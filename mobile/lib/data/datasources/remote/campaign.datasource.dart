@@ -1,12 +1,14 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobile/common/constants/endpoints.dart';
+import 'package:mobile/common/extensions/dynamic.extension.dart';
 import 'package:mobile/common/helpers/dio.helper.dart';
 import 'package:mobile/data/dtos/paticipant_feedback.dto.dart';
 import 'package:mobile/data/dtos/organization_feedback.dto.dart';
 import 'package:mobile/data/dtos/set_campaign.dto.dart';
 import 'package:mobile/data/dtos/set_donate.dto.dart';
 import 'package:mobile/data/models/campaign.model.dart';
+import 'package:mobile/modules/explore/explore.dart';
 
 @lazySingleton
 class CampaignDataSource {
@@ -14,26 +16,69 @@ class CampaignDataSource {
 
   CampaignDataSource({required DioHelper dioHelper}) : _dioHelper = dioHelper;
 
-  Future<List<CampaignModel>> getCampaigns() async {
+  Future<List<CampaignModel>> getCampaigns({
+    SortType sortType = SortType.newest,
+    LatLng? myLocation,
+  }) async {
+    var orderBy = '';
+    switch (sortType) {
+      case SortType.newest:
+        orderBy = 'passed_ongoing_upcoming DESC';
+        break;
+      case SortType.nearest:
+        orderBy = 'proximity ASC';
+        break;
+    }
+
     final response = await _dioHelper.get(
-      Endpoints.campaigns,
+      myLocation == null
+          ? '${Endpoints.campaigns}?orderBy=$orderBy'
+          : '${Endpoints.campaigns}?orderBy=$orderBy&currentLat=${myLocation.latitude}&currentLng=${myLocation.longitude}',
     );
     return response.body
         .map<CampaignModel>((e) => CampaignModel.fromJson(e))
         .toList();
   }
 
-  Future<List<CampaignModel>> searchCampaigns(
-    int? provinceCode,
-    int? districtCode,
-    int? wardCode,
+  Future<List<CampaignModel>> searchCampaigns({
+    String? province,
+    String? district,
+    String? ward,
     String? keyword,
-  ) async {
+  }) async {
+    // bỏ 'Thành phố', 'Tỉnh', 'Quận', 'Huyện', 'Thị xã', 'Thị trấn', 'Phường', 'Xã'
+    if (province != null) {
+      province = province.replaceAll('Thành phố', '');
+      province = province.replaceAll('Tỉnh', '');
+      province = province.replaceAll('Quận', '');
+      province = province.replaceAll('Huyện', '');
+      province = province.replaceAll('Thị xã', '');
+      province = province.replaceAll('Thị trấn', '');
+      province = province.replaceAll('Phường', '');
+      province = province.replaceAll('Xã', '');
+    }
+    if (district != null) {
+      district = district.replaceAll('Thành phố', '');
+      district = district.replaceAll('Tỉnh', '');
+      district = district.replaceAll('Quận', '');
+      district = district.replaceAll('Huyện', '');
+      district = district.replaceAll('Thị xã', '');
+      district = district.replaceAll('Thị trấn', '');
+      district = district.replaceAll('Phường', '');
+      district = district.replaceAll('Xã', '');
+    }
+    if (ward != null) {
+      ward = ward.replaceAll('Thành phố', '');
+      ward = ward.replaceAll('Tỉnh', '');
+      ward = ward.replaceAll('Quận', '');
+      ward = ward.replaceAll('Huyện', '');
+      ward = ward.replaceAll('Thị xã', '');
+      ward = ward.replaceAll('Thị trấn', '');
+      ward = ward.replaceAll('Phường', '');
+      ward = ward.replaceAll('Xã', '');
+    }
     final response = await _dioHelper.get(
-      Endpoints.campaigns,
-      queryParameters: {
-        'name': keyword,
-      },
+      '${Endpoints.campaigns}?${keyword.isNotNullOrEmpty ? 'name=${keyword?.trim()}' : ''}${province.isNotNullOrEmpty ? '&city=${province?.trim()}' : ''}${district.isNotNullOrEmpty ? '&district=${district?.trim()}' : ''}${ward.isNotNullOrEmpty ? '&ward=${ward?.trim()}' : ''}',
     );
     return response.body
         .map<CampaignModel>((e) => CampaignModel.fromJson(e))

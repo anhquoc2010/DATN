@@ -36,8 +36,12 @@ class CustomDropdownButton<T> extends StatelessWidget {
       margin: const EdgeInsets.all(2),
       child: DropdownButtonHideUnderline(
         child: DropdownButton(
+          isExpanded: true,
           onChanged: (value) => onChange(value),
           value: value,
+          style: const TextStyle(
+            overflow: TextOverflow.ellipsis,
+          ),
           hint: hint,
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           items: items,

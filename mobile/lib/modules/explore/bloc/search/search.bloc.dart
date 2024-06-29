@@ -47,20 +47,22 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   ) async {
     emitter(state.copyWith(status: HandleStatus.loading));
     try {
+      final campaigns = await _campaignRepository.searchCampaigns(
+        province: state.provinceIndex > 0
+            ? state.provinces[state.provinceIndex].provinceName
+            : null,
+        district: state.districtIndex > 0
+            ? state.districts[state.districtIndex].districtName
+            : null,
+        ward: state.wardIndex > 0
+            ? state.wards[state.wardIndex].wardName
+            : null,
+        keyword: state.keyword ?? '',
+      );
+
       emitter(
         state.copyWith(
-          campaigns: await _campaignRepository.searchCampaigns(
-            (state.provinceIndex > -1)
-                ? state.provinces[state.provinceIndex].provinceCode
-                : null,
-            (state.districtIndex > -1)
-                ? state.districts[state.districtIndex].districtCode
-                : null,
-            (state.wardIndex > -1)
-                ? state.wards[state.wardIndex].wardCode
-                : null,
-            state.keyword, // check if dropdown not selected
-          ),
+          campaigns: campaigns,
           status: HandleStatus.success,
         ),
       );
@@ -111,6 +113,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       ),
     );
     add(SearchListDistrictsGet());
+    add(const SearchListCampainsGet());
   }
 
   // District

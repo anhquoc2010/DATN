@@ -48,17 +48,14 @@ class SearchResultWidget extends StatelessWidget {
               ),
             );
           } else {
-            return RefreshIndicator(
-              child: ListView.separated(
-                itemBuilder: (context, index) =>
-                    ItemSearchWidget(item: campaigns![index]),
-                itemCount: campaigns!.length,
-                separatorBuilder: (context, index) => const Divider(
-                  height: 8,
-                  color: Colors.transparent,
-                ),
+            return ListView.separated(
+              itemBuilder: (context, index) =>
+                  ItemSearchWidget(item: campaigns![index]),
+              itemCount: campaigns!.length,
+              separatorBuilder: (context, index) => const Divider(
+                height: 8,
+                color: Colors.transparent,
               ),
-              onRefresh: () => onSearch(),
             );
           }
         },

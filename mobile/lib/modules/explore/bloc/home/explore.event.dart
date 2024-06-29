@@ -11,8 +11,9 @@ class ExploreListCampainsGet extends ExploreEvent {}
 
 class ExploreSortTypeChange extends ExploreEvent {
   final SortType sortType;
+  final LatLng? myLocation;
 
-  const ExploreSortTypeChange(this.sortType);
+  const ExploreSortTypeChange(this.sortType, {this.myLocation});
 
   @override
   List<Object> get props => [sortType];

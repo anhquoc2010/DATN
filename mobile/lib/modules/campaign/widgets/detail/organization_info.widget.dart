@@ -85,7 +85,7 @@ class OrganizationInfo extends StatelessWidget {
                     Navigator.of(context).pushNamed(
                       AppRoutes.chat,
                       arguments: ArgumentWrapper2<UserModel?, OrganizationModel?>(
-                        param1: context.read<AuthBloc>().state.user ,
+                        param1: context.read<AuthBloc>().state.user,
                         param2: organization,
                       ),
                     );

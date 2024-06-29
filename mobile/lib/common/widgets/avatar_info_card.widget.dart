@@ -60,6 +60,7 @@ class AvatarInfoCard extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyles.boldText.copyWith(fontSize: 16),
+                    maxLines: 1,
                   ),
                   const SizedBox(
                     height: 5,
@@ -71,6 +72,7 @@ class AvatarInfoCard extends StatelessWidget {
                         color: ColorStyles.gray400,
                         fontSize: 13,
                       ),
+                      maxLines: 3,
                     ),
                   ),
                 ],

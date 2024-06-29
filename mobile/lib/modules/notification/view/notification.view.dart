@@ -3,24 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/common/constants/handle_status.enum.dart';
 import 'package:mobile/common/theme/app_size.dart';
-import 'package:mobile/common/theme/color_styles.dart';
 import 'package:mobile/common/utils/conditional_render.util.dart';
 import 'package:mobile/common/widgets/avatar_info_card.widget.dart';
 import 'package:mobile/common/widgets/common_error.widget.dart';
 import 'package:mobile/common/widgets/custom_app_bar.widget.dart';
-import 'package:mobile/data/datasources/notification.mock.dart';
+import 'package:mobile/configs/router/app_routes.dart';
 import 'package:mobile/data/models/message.model.dart';
+import 'package:mobile/data/models/organization.model.dart';
 import 'package:mobile/data/models/thread.model.dart';
+import 'package:mobile/data/models/user.model.dart';
 import 'package:mobile/data/repositories/chat.repository.dart';
+import 'package:mobile/data/repositories/organization.repository.dart';
+import 'package:mobile/data/repositories/user.repository.dart';
 import 'package:mobile/di/di.dart';
 import 'package:mobile/generated/locale_keys.g.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobile/modules/auth/auth.dart';
-import 'package:mobile/modules/campaign/widgets/management/campaign_get_common_error.widget.dart';
-import 'package:mobile/modules/campaign/widgets/management/list_campaigns.widget.dart';
 import 'package:mobile/modules/chat/chat.dart';
-import 'package:mobile/modules/notification/notification.dart';
-import 'package:mobile/modules/notification/widgets/list_noti.widget.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({
@@ -35,6 +34,8 @@ class NotificationPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => ChatBloc(
         chatRepository: getIt.get<ChatRepository>(),
+        userRepository: getIt.get<UserRepository>(),
+        organizationRepository: getIt.get<OrganizationRepository>(),
       )..add(
           context.read<AuthBloc>().state.status.isAuthenticatedOrganization
               ? ChatThreadFetch(
@@ -140,14 +141,13 @@ class __NotificationView extends State<_NotificationView>
                 fallbackBuilder: (_) {
                   if (state.threads.isEmpty) {
                     return Center(
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.all(AppSize.horizontalSpace),
-                          child: CommonError(
-                            title: LocaleKeys.texts_error_occur.tr(),
-                          ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(AppSize.horizontalSpace),
+                        child: CommonError(
+                          title: LocaleKeys.texts_chat_empty.tr(),
                         ),
-                      );
+                      ),
+                    );
                   }
 
                   return ListView.separated(
@@ -157,17 +157,51 @@ class __NotificationView extends State<_NotificationView>
                     clipBehavior: Clip.none,
                     itemBuilder: (context, index) {
                       final ThreadModel currentThread = state.threads[index];
-                      final List<MessageModel> messages = currentThread.messages ?? [];
+                      final List<MessageModel> messages =
+                          currentThread.messages ?? [];
 
                       return AvatarInfoCard(
+                        avatar: context
+                                .read<AuthBloc>()
+                                .state
+                                .status
+                                .isAuthenticatedOrganization
+                            ? state.users[index].avatar ?? ''
+                            : state.organizations[index].avatar ?? '',
                         description: messages.isNotEmpty
                             ? messages.first.message ?? ''
                             : '',
-                        title: currentCampaign.name,
+                        title: context
+                                .read<AuthBloc>()
+                                .state
+                                .status
+                                .isAuthenticatedOrganization
+                            ? state.users[index].fullName ?? ''
+                            : state.organizations[index].name ?? '',
                         onTap: () {
                           Navigator.of(context).pushNamed(
-                            AppRoutes.campaignDetail,
-                            arguments: currentCampaign,
+                            AppRoutes.chat,
+                            arguments: ArgumentWrapper2<UserModel?,
+                                OrganizationModel?>(
+                              param1: context
+                                      .read<AuthBloc>()
+                                      .state
+                                      .status
+                                      .isAuthenticatedOrganization
+                                  ? state.users[index]
+                                  : context.read<AuthBloc>().state.user,
+                              param2: context
+                                      .read<AuthBloc>()
+                                      .state
+                                      .status
+                                      .isAuthenticatedOrganization
+                                  ? context
+                                      .read<AuthBloc>()
+                                      .state
+                                      .user
+                                      ?.currentOrganization
+                                  : state.organizations[index],
+                            ),
                           );
                         },
                       );
@@ -178,7 +212,7 @@ class __NotificationView extends State<_NotificationView>
                       );
                     },
                     shrinkWrap: true,
-                    itemCount: campaigns.length,
+                    itemCount: state.threads.length,
                   );
                 },
               );

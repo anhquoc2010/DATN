@@ -40,6 +40,10 @@ class OrganizationDataSource {
   }
 
   Future<OrganizationModel> getOrganizationInfoById(int organizationId) async {
-    return (await UserMock.getOrganizations())[0];
+    final HttpRequestResponse response = await _dioHelper.get(
+      '${Endpoints.organization}/$organizationId',
+    );
+
+    return OrganizationModel.fromJson(response.body);
   }
 }

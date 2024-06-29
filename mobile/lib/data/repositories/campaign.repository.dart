@@ -6,6 +6,7 @@ import 'package:mobile/data/dtos/organization_feedback.dto.dart';
 import 'package:mobile/data/dtos/set_campaign.dto.dart';
 import 'package:mobile/data/dtos/set_donate.dto.dart';
 import 'package:mobile/data/models/campaign.model.dart';
+import 'package:mobile/modules/explore/explore.dart';
 
 @lazySingleton
 class CampaignRepository {
@@ -14,21 +15,24 @@ class CampaignRepository {
   CampaignRepository({required CampaignDataSource dataSource})
       : _dataSource = dataSource;
 
-  Future<List<CampaignModel>> getCampaigns() {
-    return _dataSource.getCampaigns();
+  Future<List<CampaignModel>> getCampaigns({
+    SortType sortType = SortType.newest,
+    LatLng? myLocation,
+  }) async {
+    return _dataSource.getCampaigns(sortType: sortType, myLocation: myLocation);
   }
 
-  Future<List<CampaignModel>> searchCampaigns(
-    int? provinceCode,
-    int? districtCode,
-    int? wardCode,
+  Future<List<CampaignModel>> searchCampaigns({
+    String? province,
+    String? district,
+    String? ward,
     String? keyword,
-  ) {
+  }) {
     return _dataSource.searchCampaigns(
-      provinceCode,
-      districtCode,
-      wardCode,
-      keyword,
+      province: province,
+      district: district,
+      ward: ward,
+      keyword: keyword,
     );
   }
 
