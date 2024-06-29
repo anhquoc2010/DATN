@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>632996193115-1thgv5q0fecqhdtqqlbavphq4rf826vj.apps.googleusercontent.com</string>
+	<string>658319658591-h54510rvvgmq1cr947mlpqtts2s7mthg.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.632996193115-1thgv5q0fecqhdtqqlbavphq4rf826vj</string>
+	<string>com.googleusercontent.apps.658319658591-h54510rvvgmq1cr947mlpqtts2s7mthg</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBZ_iYC1SDls9vpZjcAm2trJ4dWwSI8Fnc</string>
+	<string>AIzaSyAIxl5Pwb42UbL00sDGaWVfIHd-TzkzAKI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>632996193115</string>
+	<string>658319658591</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.gdscdut.sharinghub-dev</string>
+	<string>com.gdscdut.sharinghub</string>
 	<key>PROJECT_ID</key>
-	<string>sharinghub-dev</string>
+	<string>sharinghub-6a0f9</string>
 	<key>STORAGE_BUCKET</key>
-	<string>sharinghub-dev.appspot.com</string>
+	<string>sharinghub-6a0f9.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:632996193115:ios:8517c7d1d409b17183307e</string>
+	<string>1:658319658591:ios:8a2a921952de20297515ea</string>
 </dict>
 </plist>
